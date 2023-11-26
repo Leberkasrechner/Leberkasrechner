@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "leaflet-contextmenu": "^1.4.0",
+    "leaflet-fullscreen": "^1.0.2",
+    "leaflet-markers-canvas": "^0.2.2",
+    "leaflet-search": "^4.0.0",
+    "rbush": "^3.0.1"
+  }
+}
