@@ -24,7 +24,7 @@
     <?php endif ?>
     <?php if(isset($lmap)) : ?>
         <!--Leberkasmap.js-->
-        <script src="/static/leaflet/leberkasmap.js"></script>
+        <script src="/static/leberkasmap.js"></script>
     <?php endif ?>
     
     <!--Tabler-->
