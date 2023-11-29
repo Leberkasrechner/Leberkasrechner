@@ -10,10 +10,10 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 # JSON-Datei einlesen
-with open('static/butchers.json') as f:
+with open('static/butchers.json', encoding='utf-8') as f:
     data = json.load(f)
 # JSON-Datei einlesen
-with open('static/butchers.json') as f:
+with open('static/butchers.json', encoding='utf-8') as f:
     data = json.load(f)
 
 total_entries = len(data)
