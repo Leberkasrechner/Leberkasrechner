@@ -9,9 +9,11 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
-# JSON-Datei einlesen
-with open('static/butchers.json', encoding='utf-8') as f:
-    data = json.load(f)
+json_url_standard = "https://cdn.phipsiart.at/butchers.json"
+json_url = input("Bitte URL eingeben (leer lassen für Standardwert: ${json_url_standard}): ")
+if json_url == "":
+    json_url = json_url_standard
+
 # JSON-Datei einlesen
 with open('static/butchers.json', encoding='utf-8') as f:
     data = json.load(f)
