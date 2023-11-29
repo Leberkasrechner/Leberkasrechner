@@ -1,5 +1,6 @@
 <?php
     $leaflet = true;
+    $lmap = true;
     $navbar_highlighted = "Home";
     require "components/head.php";
     require "components/navbar.php";

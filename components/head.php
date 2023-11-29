@@ -20,19 +20,31 @@
         <!--leaflet-markers-canvas-->
         <script src="/node_modules/rbush/rbush.js"></script>
         <script src="/node_modules/leaflet-markers-canvas/dist/leaflet-markers-canvas.min.js"></script>
-        <!--Leberkasmap.js-->
-        <script src="/static/leaflet/leberkasmap.js"></script>
 
     <?php endif ?>
+    <?php if(isset($lmap)) : ?>
+        <!--Leberkasmap.js-->
+        <script src="/static/leaflet/leberkasmap.js"></script>
+    <?php endif ?>
+    
     <!--Tabler-->
     <link rel="stylesheet" href="/static/tabler/tabler.css"/>
-    
+    <!--Inter-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+        --tblr-font-sans-serif: 'Inter';
+        }
+    </style>
+
     <title>Leberkasrechner</title>
 </head>
 <?php if(!isset($dobody)) {
     echo '
-    <body class="layout-condensed">
-        <div class="page">
-            <div class="container-xl">
+<body class="layout-condensed">
+    <div class="page">
+        <div class="container-xl">
     ';
 }
