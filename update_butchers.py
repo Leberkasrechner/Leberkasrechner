@@ -10,7 +10,7 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 json_url_standard = "https://cdn.phipsiart.at/butchers.json"
-json_url = input("Bitte URL eingeben (leer lassen für Standardwert: ${json_url_standard}): ")
+json_url = input(f"Bitte URL eingeben (leer lassen für Standardwert: {json_url_standard}): ")
 if json_url == "":
     json_url = json_url_standard
 
