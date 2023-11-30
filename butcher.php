@@ -4,6 +4,7 @@
     require "components/head.php";
     require "components/navbar.php";
     require "components/conn.php";
+    require "components/butcher.php";
     require "components/util.php";
     global $conn;
     $sql = "SELECT id, lat, lon, tags FROM butchers WHERE id = ?";
@@ -20,39 +21,11 @@
     $lon = $res['lon'];
     $tagsJson = $res['tags'];
     $t = json_decode(utf8_encode($tagsJson), true);
+
+    $butcher = new Butcher($id, $lat, $lon, $tagsJson);
+
     $name = $t["name"];
-    if (strpos($name, 'Metzgerei') === false) {
-        $name = 'Metzgerei ' . $name;
-    }
     
-
-    ## INFO CARD ######################################
-    $infocardcode = "";
-    $svgs = array(
-        "addr:city" => '<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-        <path d="M3.6 9h16.8" />
-        <path d="M3.6 15h16.8" />
-        <path d="M11.5 3a17 17 0 0 0 0 18" />
-        <path d="M12.5 3a17 17 0 0 1 0 18" />'
-    );
-    $descriptions = array(
-        "addr:city" => "Stadt",
-        ""
-    );
-    
-    foreach (array_keys($t) as $key) {
-        $value = $t[$key];
-    
-        if (array_key_exists($key, $descriptions)) {
-            $infocardcode .= '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-world" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">';
-            $infocardcode .= $svgs[$key] . "</svg>";
-        }
-
-    }
-    
-
-    # SEITENBEGINN
     ?>
 
     <div class="page-header d-print-none">
@@ -86,8 +59,9 @@
 
                         echo "</table>";
                         ?>
-
-                        <?=$infocardcode?>
+                        <div class="mt-3">
+                            <?=$butcher->getInfoCard();?>
+                        </div>
                     </div>
                 </div>
             </div>
