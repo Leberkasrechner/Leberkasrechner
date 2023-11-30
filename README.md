@@ -10,3 +10,7 @@ To run this code, you will need:
 5. A PHP package manager, preferably Composer. Requirements are listet in ```composer.json```. To install the requirements, run
 
         composer install
+
+# Ressouces 
+Useful notes for dev
+- [taginfo](https://taginfo.openstreetmap.org/tags/shop=butcher#combinations)
