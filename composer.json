@@ -1,0 +1,5 @@
+{
+    "require": {
+        "ujamii/osm-opening-hours": "dev-main"
+    }
+}

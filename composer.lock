@@ -1,0 +1,124 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "35027d8ce0d23133c159fa0bd1e9204e",
+    "packages": [
+        {
+            "name": "spatie/opening-hours",
+            "version": "2.41.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/opening-hours.git",
+                "reference": "2113e289b16340b24ea0743a7179ebc9dcbe5e64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/opening-hours/zipball/2113e289b16340b24ea0743a7179ebc9dcbe5e64",
+                "reference": "2113e289b16340b24ea0743a7179ebc9dcbe5e64",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "kylekatarnls/multi-tester": "^1.1",
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\OpeningHours\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A helper to query and format a set of opening hours",
+            "homepage": "https://github.com/spatie/opening-hours",
+            "keywords": [
+                "hours",
+                "opening",
+                "opening-hours",
+                "schedule",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/opening-hours/issues",
+                "source": "https://github.com/spatie/opening-hours/tree/2.41.0"
+            },
+            "time": "2023-06-12T19:54:57+00:00"
+        },
+        {
+            "name": "ujamii/osm-opening-hours",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ujamii/osm-opening-hours.git",
+                "reference": "d421a36ba13515368e8a22c079a1bdc1d4152c24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ujamii/osm-opening-hours/zipball/d421a36ba13515368e8a22c079a1bdc1d4152c24",
+                "reference": "d421a36ba13515368e8a22c079a1bdc1d4152c24",
+                "shasum": ""
+            },
+            "require": {
+                "ext-calendar": "*",
+                "php": ">=8.0",
+                "spatie/opening-hours": "^2.11"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "infection/infection": "^0.26.8",
+                "phpstan/phpstan": "^1.6",
+                "phpunit/phpunit": "^9.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ujamii\\OsmOpeningHours\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Grundkötter",
+                    "email": "mg@ujamii.com"
+                }
+            ],
+            "description": "Parser for Openstreetmap opening hours format",
+            "support": {
+                "issues": "https://github.com/ujamii/osm-opening-hours/issues",
+                "source": "https://github.com/ujamii/osm-opening-hours/tree/main"
+            },
+            "time": "2023-05-16T14:03:37+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "ujamii/osm-opening-hours": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}
