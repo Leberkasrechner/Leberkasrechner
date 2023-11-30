@@ -49,7 +49,7 @@
                         </div> 
                         
 
-                        <?php
+                        <?php /*
                         echo "<table>";
 
                         foreach ($t as $key => $value) {
@@ -58,7 +58,7 @@
 
 
                         echo "</table>";
-                        ?>
+                        */?>
                         <div class="mt-3">
                             <?=$butcher->getInfoCard();?>
                         </div>
