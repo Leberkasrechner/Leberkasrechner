@@ -12,13 +12,15 @@ To run this code, you will need:
         composer install
 
 # To do
-– [ ] Add opening hours panel
+
+- [ ] Add opening hours panel
 - [ ] Interaction options for OpenStreetMap
 - [ ] Design Landing Page
 - [ ] New Marker Icon on Front Page
 - [ ] **Image database**
 - [ ] Features for vegetarian and vegan alternatives
 - [ ] perhaps rating system
+- [ ] Page titles
 
 # Ressouces 
 Useful notes for dev
