@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <?php if(isset($leaflet)) : ?>
-        <!--leaflet-->
+        <!--Leaflet-->
         <script  src="/node_modules/leaflet/dist/leaflet.js"></script>
         <link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css"/>
         <!--leaflet.contextmenu-->
@@ -25,6 +25,10 @@
     <?php if(isset($lmap)) : ?>
         <!--Leberkasmap.js-->
         <script src="/static/leberkasmap.js"></script>
+    <?php endif ?>
+    <?php if(isset($opening_hours)) : ?>
+        <!--OSM opening_hours evaluation tool-->
+        <script src="/node_modules/opening_hours/build/opening_hours.js"></script>
     <?php endif ?>
     
     <!--Tabler-->

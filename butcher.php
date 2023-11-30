@@ -1,5 +1,6 @@
 <?php 
     $leaflet = true;
+    $opening_hours = true;
     require "components/head.php";
     require "components/navbar.php";
     require "components/conn.php";

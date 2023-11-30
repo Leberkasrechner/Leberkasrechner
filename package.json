@@ -5,6 +5,7 @@
     "leaflet-fullscreen": "^1.0.2",
     "leaflet-markers-canvas": "^0.2.2",
     "leaflet-search": "^4.0.0",
+    "opening_hours": "^3.8.0",
     "rbush": "^3.0.1"
   }
 }
