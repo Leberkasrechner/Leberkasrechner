@@ -130,9 +130,30 @@ class Butcher {
         return $ret;
     }
 
-    public function getOpeningHoursCard() {
+    public function getOpeningHoursHTML() {
+        $daydic = Array(
+            "monday" => "Montag",
+            "tuesday" => "Dienstag",
+            "wednesday" => "Mittwoch",
+            "thursday" => "Donnerstag",
+            "friday" => "Freitag",
+            "saturday" => "Samstag",
+            "sunday" => "Sonntag"
+        );
         $ret = "";
-        
+        if(!$this->opening_hours_available) {return false;}
+        $ret .= '<div class="table-responsive"><table class="table table-vcenter card-table">';
+        $ret .= '<thead><tr><th>Tag</th><th>Öffnungszeiten</th></tr></thead>';
+        foreach (['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day) {
+            $ret .= '<tr>';
+            $ret .= '<td>' . ucfirst($daydic[$day]) . '</td>';
+            $ret .= '<td>' . implode(', ', $this->opening_hours->forDay($day)->map(function ($timeRange) {
+                return $timeRange->format('H:i');
+            })) . '</td>';
+            $ret .= '</tr></div>';
+        }
+        $ret .= '</table>';
+        return $ret;
     }
 
 

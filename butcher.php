@@ -78,6 +78,17 @@
                 </div>
               </div>
             </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <h3 class="card-header">
+                        Öffnungszeiten
+                    </h3>
+                    <div class="card-body">
+                        <?=$butcher->getOpeningHoursHTML();?>
+                    </div>
+                </div>
+              </div>
+            </div>
         </div>
 
 
