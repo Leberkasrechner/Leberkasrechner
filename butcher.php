@@ -41,7 +41,7 @@
 
     <div class="page-body">
         <div class="row row-cards">
-            <div class="col-lg-8">
+            <div class="col">
                 <div class="card card-lg">
                     <div class="card-body">
                         <div class="card-title">
@@ -67,18 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <?=domap($lat, $lon, $name);?>
-                    </div>
-                  <div class="card-footer">
-                    Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
+            <div class="col">
                 <div class="card">
                     <?php if($butcher->getOpeningState()) : ?>
                         <div class="ribbon bg-lime">Geöffnet</div>
@@ -93,9 +82,21 @@
                         <?=$butcher->getOpeningHoursHTML();?>
                     </div>
                 </div>
-              </div>
+            </div>
+            
+    </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <?=domap($lat, $lon, $name);?>
+                    </div>
+                    <div class="card-footer">
+                        Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende
+                    </div>
+                </div>
             </div>
         </div>
+</div>
 
 
 
