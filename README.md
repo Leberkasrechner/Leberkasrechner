@@ -2,7 +2,26 @@
 To run this code, you will need:
 1. A Webserver
 2. PHP
-3. A MySQL-Instance
+3. A MySQL-Instanc
+
+   Create a database ```leberkasrechner``` and a table ```butcher``` in it:
+
+        CREATE DATABASE IF NOT EXISTS `leberkasrechner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+        USE `leberkasrechner`;
+
+        CREATE TABLE `butchers` (
+                `id` bigint NOT NULL,
+                `lat` double DEFAULT NULL,
+                `lon` double DEFAULT NULL,
+                `tags` text NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+   
+   To fill the database with data, run the ```update_butchers.py``` script:
+
+        python3 update_butchers.py
+        py update_butchers.py
+
+
 4. The node modules given in the ```package.json``` file:
 
         npm install
