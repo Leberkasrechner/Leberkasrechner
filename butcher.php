@@ -48,8 +48,10 @@
                             Informationen
                         </div> 
                         
-
-                        <?php /*
+                    
+                        <?php 
+                        # Table with all OSM tags for debugging purposes
+                        /*
                         echo "<table>";
 
                         foreach ($t as $key => $value) {
