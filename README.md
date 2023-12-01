@@ -21,6 +21,8 @@ To run this code, you will need:
         python3 update_butchers.py
         py update_butchers.py
 
+   The MySQL Password in the code is set to ```xxxyyy```. If you want to run your instance publicly, create a database user with only the needed rights (```select``` in the ```butchers``` table) and insert their credentials in the ```components/conn.py``` file. Note: The user given in the python code (also change that) needs ```select```, ```insert``` and ```update``` permissions.
+
 
 4. Install the node modules given in the ```package.json``` file:
 
