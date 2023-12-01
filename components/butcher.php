@@ -160,13 +160,22 @@ class Butcher {
         $ret .= '<thead><tr><th>Tag</th><th>Öffnungszeiten</th></tr></thead>';
         foreach (['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day) {
             $ret .= '<tr>';
-            $ret .= '<td>' . ucfirst($daydic[$day]) . '</td>';
-            $ret .= '<td>' . implode(', ', $this->opening_hours->forDay($day)->map(function ($timeRange) {
+            $bold = (strtolower((new DateTime())->format('l')) == $day);
+            if($bold) {
+                $ret .= '<td><b>' . ucfirst($daydic[$day]) . '</b></td>';
+            } else {
+                $ret .= '<td>' . ucfirst($daydic[$day]) . '</td>';
+            }
+            $ret .= '<td>';
+            if($bold) {$ret .= "<b>";}
+            $ret .= implode(', ', $this->opening_hours->forDay($day)->map(function ($timeRange) {
                 return $timeRange->format('H:i');
-            })) . '</td>';
-            $ret .= '</tr></div>';
+            }));
+            if($bold) {$ret .="</b>";}
+            $ret .= '</td>';
+            $ret .= '</tr>';
         }
-        $ret .= '</table>';
+        $ret .= '</table></div>';
         return $ret;
     }
 
