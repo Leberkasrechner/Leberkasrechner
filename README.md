@@ -2,7 +2,7 @@
 To run this code, you will need:
 1. A Webserver
 2. PHP
-3. A MySQL-Instanc
+3. A MySQL-Instance
 
    Create a database ```leberkasrechner``` and a table ```butcher``` in it:
 
@@ -22,7 +22,7 @@ To run this code, you will need:
         py update_butchers.py
 
 
-4. The node modules given in the ```package.json``` file:
+4. Install the node modules given in the ```package.json``` file:
 
         npm install
 
