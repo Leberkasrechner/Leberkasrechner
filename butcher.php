@@ -80,11 +80,17 @@
                     </h3>
                     <div class="card-body">
                         <?=$butcher->getOpeningHoursHTML();?>
+                        <?php if(!empty($butcher->getOpeningHoursCheckDate())) : ?>
+                        <div class="mt-2">
+                            <small><i>
+                                Zuletzt geprüft am
+                                <?=$butcher->getOpeningHoursCheckDate();?>
+                            </i></small>
+                        </div>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>
-            
-    </div>
             <div class="col">
                 <div class="card">
                     <div class="card-body">

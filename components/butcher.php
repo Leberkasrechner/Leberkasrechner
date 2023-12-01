@@ -8,6 +8,7 @@ class Butcher {
     public $tags;
     private $opening_hours;
     private $opening_hours_available;
+    private $opening_hours_check_date;
 
     public function __construct($id, $lat, $lon, $tags) {
         $this->id = $id;
@@ -16,6 +17,10 @@ class Butcher {
         $this->street = null;
         $this->city = null;
         $this->address = null;
+        # Opening Hours
+        if(!empty($this->tags["check_date:opening_hours"])) {
+            $this->opening_hours_check_date = $this->tags["check_date:opening_hours"];
+        }
         $this->formatAddress();
         $this->renderOpeningHours();
     }
@@ -179,6 +184,14 @@ class Butcher {
         return $ret;
     }
 
+    public function getOpeningHoursCheckDate() {
+        if(empty($this->opening_hours_check_date)) {return null;}
+        try {
+            return (new DateTime($this->opening_hours_check_date))->format('d.m.Y');
+        } catch (Exception $e) {
+            return null;
+        }
+    }
 
     public function getId() {
         return $this->id;
