@@ -6,6 +6,7 @@ To run this code, you will need:
 
    Create a database ```leberkasrechner``` and a table ```butcher``` in it:
 
+        ```sql
         CREATE DATABASE IF NOT EXISTS `leberkasrechner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
         USE `leberkasrechner`;
 
@@ -15,10 +16,13 @@ To run this code, you will need:
                 `lon` double DEFAULT NULL,
                 `tags` text NOT NULL
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+        ```
 
    Then, a fulltext index over the ```butchers``` table:
 
+        ```sql
         ALTER TABLE `leberkasrechner`.`butchers` ADD FULLTEXT (`tags`); 
+        ```
    
    To fill the database with data, run the ```update_butchers.py``` script:
 
@@ -27,6 +31,7 @@ To run this code, you will need:
 
    The MySQL Password in the code is set to ```xxxyyy```. If you want to run your instance publicly, create a database user with only the needed rights (```select``` in the ```butchers``` table) and insert their credentials in the ```components/conn.py``` file. Note: The user given in the python code (also change that) needs ```select```, ```insert``` and ```update``` permissions. For example, this could be the SQL query for creating the php user:
 
+        ```sql
         CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
         GRANT USAGE ON *.* TO 'yourusername'@'%'; 
         GRANT SELECT ON `leberkasrechner`.* TO `yourusername`@`%`;
@@ -35,7 +40,7 @@ To run this code, you will need:
    
         CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
         GRANT USAGE ON *.* TO 'yourusername'@'%'; 
-        GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%'; 
+        GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%'; ```
 
 
 4. Install the node modules given in the ```package.json``` file:
