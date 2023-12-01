@@ -80,6 +80,12 @@
             </div>
             <div class="col-lg-4">
                 <div class="card">
+                    <?php if($butcher->getOpeningState()) : ?>
+                        <div class="ribbon bg-lime">Geöffnet</div>
+                    <?php endif ?>
+                    <?php if(!$butcher->getOpeningState()) : ?>
+                        <div class="ribbon bg-red">Geschlossen</div>
+                    <?php endif ?>
                     <h3 class="card-header">
                         Öffnungszeiten
                     </h3>

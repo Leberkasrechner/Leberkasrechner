@@ -72,6 +72,20 @@ class Butcher {
         }
     }
 
+    public function getOpeningState() {
+        # Sendet true wenn geöffnet, false wenn geschlossen
+        if(!$this->opening_hours_available) {return null;}
+        
+        $now = new DateTime('now');
+        $range = $this->opening_hours->currentOpenRange($now);
+
+        if($range) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getOpeningStateHTML() {
         # Sendet HTML-Text, "Geöffnet" oder "Geschlossen"
         if(!$this->opening_hours_available) {return "";}
