@@ -15,6 +15,10 @@ To run this code, you will need:
                 `lon` double DEFAULT NULL,
                 `tags` text NOT NULL
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+   Then, a fulltext index over the ```butchers``` table:
+
+        ALTER TABLE `leberkasrechner`.`butchers` ADD FULLTEXT (`tags`); 
    
    To fill the database with data, run the ```update_butchers.py``` script:
 
