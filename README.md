@@ -35,12 +35,15 @@ To run this code, you will need:
         CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
         GRANT USAGE ON *.* TO 'yourusername'@'%'; 
         GRANT SELECT ON `leberkasrechner`.* TO `yourusername`@`%`;
+        ```
    
    This could be the code for the python user:
    
+        ```sql
         CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
         GRANT USAGE ON *.* TO 'yourusername'@'%'; 
-        GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%'; ```
+        GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%';
+        ```
 
 
 4. Install the node modules given in the ```package.json``` file:
