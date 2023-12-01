@@ -1,6 +1,6 @@
 <?php
 function domap($lat, $lon, $text){
-    $lat = $lat + 0.05;
+    $lat = $lat;
     $ret = "<div style='height: 300px;' class='llmap' id='map'></div>";
     $ret .= " <script>
     var map = L.map('map').setView([$lat, $lon], 13);
