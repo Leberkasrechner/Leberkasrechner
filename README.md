@@ -6,7 +6,7 @@ To run this code, you will need:
 
    Create a database ```leberkasrechner``` and a table ```butcher``` in it:
 
-        CREATE DATABASE IF NOT EXISTS `leberkasrechner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+        CREATE DATABASE IF NOT EXISTS `leberkasrechner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
         USE `leberkasrechner`;
 
         CREATE TABLE `butchers` (
@@ -14,7 +14,7 @@ To run this code, you will need:
                 `lat` double DEFAULT NULL,
                 `lon` double DEFAULT NULL,
                 `tags` text NOT NULL
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
    Then, a fulltext index over the ```butchers``` table:
 
