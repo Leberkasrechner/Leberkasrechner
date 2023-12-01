@@ -6,6 +6,8 @@ use Ujamii\OsmOpeningHours\OsmStringToOpeningHoursConverter;
 class Butcher {
     private $id;
     public $tags;
+    private $opening_hours;
+    private $opening_hours_available;
 
     public function __construct($id, $lat, $lon, $tags) {
         $this->id = $id;
@@ -15,6 +17,7 @@ class Butcher {
         $this->city = null;
         $this->address = null;
         $this->formatAddress();
+        $this->renderOpeningHours();
     }
 
     # TODO: Konstruktor, der nur $id als Eingabewert hat und dann die Daten
@@ -52,34 +55,36 @@ class Butcher {
         }
     }
 
-    public function getOpeningStateHTML($colored=true) {
+    private function renderOpeningHours() {
+        # Turns OSM opening_hours tag into an spatie/opening_hours object for further use
         if(empty($this->tags["opening_hours"])||strlen($this->tags["opening_hours"]<3)) {return "";}
         $ret = "";
         try {
             $opstr = preg_replace('/(,|;)\s+/', '$1', $this->tags["opening_hours"]); # Leerzeichen nach komma oder semikolon entfernen
             $opstr = preg_replace('/\b(\d{1}:\d{2})\b/', '0$1', $opstr); # aus 6:30 mach 06:30
-
-            $openingHours = OsmStringToOpeningHoursConverter::openingHoursFromOsmString($opstr);
-            $now = new DateTime('now');
-            $range = $openingHours->currentOpenRange($now);
+            $this->opening_hours = OsmStringToOpeningHoursConverter::openingHoursFromOsmString($opstr);
+            $this->opening_hours_available = true;
         } catch (Exception $e) {
-            return $this->tags["opening_hours"];
+            # opening hours could not be parsed
+            $this->opening_hours_available = false;
+            $this->opening_hours = null;
+            return null;
         }
+    }
+
+    public function getOpeningStateHTML() {
+        # Sendet HTML-Text, "Geöffnet" oder "Geschlossen"
+        if(!$this->opening_hours_available) {return "";}
+        $ret = "";
+        
+        $now = new DateTime('now');
+        $range = $this->opening_hours->currentOpenRange($now);
 
         if($range) {
             $ret = "<span class='text-lime'>Geöffnet</span>";
         } else {
             $ret = "<span class='text-red'>Geschlossen</span>";
         }
-
-        /*
-        if ($range) {
-            $ret .= "It's open since ".$range->start()."\n";
-            $ret .= "It will close at ".$range->end()."\n";
-        } else {
-            $ret .= "It's closed since ".$openingHours->previousClose($now)->format('l H:i')."\n";
-            $ret .= "It will re-open at ".$openingHours->nextOpen($now)->format('l H:i')."\n";
-        }*/
         return $ret; 
     }
 
@@ -123,6 +128,11 @@ class Butcher {
 
         }
         return $ret;
+    }
+
+    public function getOpeningHoursCard() {
+        $ret = "";
+        
     }
 
 
