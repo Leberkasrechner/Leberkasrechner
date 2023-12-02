@@ -161,7 +161,7 @@ class Butcher {
         );
         $ret = "";
         if(!$this->opening_hours_available) {return false;}
-        $ret .= '<div class="table-responsive"><table class="table table-vcenter card-table">';
+        $ret .= '<div class="table-responsive"><table class="table table-vcenter table-hover card-table">';
         $ret .= '<thead><tr><th>Tag</th><th>Öffnungszeiten</th></tr></thead>';
         foreach (['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day) {
             $ret .= '<tr>';
