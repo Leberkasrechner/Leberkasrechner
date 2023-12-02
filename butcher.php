@@ -27,11 +27,30 @@
     $name = $t["name"];
     
     ?>
+<style>
+    .cards-responsive{
+        display: flex;
+    }
+    .page-title-responsive{
+        padding-left: 0rem;
+    }
+    @media only screen and (max-width: 942px) {
+        .cards-responsive {
+            display: block;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            margin-top: 2rem;
+        }
+        .page-title-responsive{
+            margin-left: 1.5rem;
+        }
 
+    }
+    </style>
     <div class="page-header d-print-none">
         <div class="row g-2 align-items-center">
             <div class="col">
-                <h2 class="page-title">
+                <h2 class="page-title page-title-responsive">
                     <?=$name?>
                 </h2>
             </div>
@@ -40,7 +59,7 @@
 
 
     <div class="page-body">
-        <div class="row row-cards">
+        <div class="row row-cards cards-responsive">
             <div class="col">
                 <div class="card card-lg">
                     <div class="card-body">
