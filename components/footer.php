@@ -29,7 +29,7 @@
         <div class="footer-content">
             <p class="copy">© 2023 leberkasrechner.de</p>
             <p>Alle Angaben ohne Gewähr.</p>
-            <a class="privacy-link" href="/datenschutz.php" class="link-secondary">Datenschutzerklärung</a>
+            <a class="privacy-link link-secondary" href="/datenschutz.php">Datenschutzerklärung</a>
         </div>
     </footer>
         
