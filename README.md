@@ -59,8 +59,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%
 
 # To do
 
-- [ ] Add opening hours panel
-- [ ] Interaction options for OpenStreetMap
+- [x] Add opening hours panel
+- [x] Interaction options for OpenStreetMap
 - [ ] Design Landing Page
 - [ ] New Marker Icon on Front Page
 - [ ] **Image database**
