@@ -105,7 +105,7 @@
                             <small><i>
                                 <span>Abweichungen insbesondere an Feiertagen und während der Ferien möglich.</span>
                                 <?php if(!empty($butcher->getOpeningHoursCheckDate())) : ?>
-                                    <br><span>
+                                    <span>
                                         Zuletzt geprüft am
                                         <?=$butcher->getOpeningHoursCheckDate();?>.
                                     </span>
