@@ -67,6 +67,7 @@
                     </div>
                 </div>
             </div>
+            <?php if($butcher->getOpeningHoursHTML()) : ?>
             <div class="col">
                 <div class="card">
                     <?php if($butcher->getOpeningState()) : ?>
@@ -95,6 +96,7 @@
                     </div>
                 </div>
             </div>
+            <?php endif ?>
             <div class="col">
                 <div class="card">
                     <div class="card-body">
