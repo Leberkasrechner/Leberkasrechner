@@ -3,7 +3,8 @@ To run this code, you will need:
 1. A Webserver
 2. PHP
 3. A MySQL-Instance
-
+4. The [npm](https://npmjs.com) package manager
+## Creating the Database
    Create a database ```leberkasrechner``` and a table ```butcher``` in it:
 
 ```sql
@@ -31,8 +32,30 @@ To fill the database with data, run the ```update_butchers.py``` script:
 python3 update_butchers.py
 py update_butchers.py
 ```
+## Storing Database Credentials
 
-The MySQL Password in the code is set to ```xxxyyy```. If you want to run your instance publicly, create a database user with only the needed rights (```select``` in the ```butchers``` table) and insert their credentials in the ```components/conn.py``` file. Note: The user given in the python code (also change that) needs ```select```, ```insert``` and ```update``` permissions. For example, this could be the SQL query for creating the php user:
+Create a `.env` file by copying the `.env.example` file. This file will store your MySQL database credentials.
+
+Here's what each variable in the `.env` file represents:
+
+- `DBSERVER`: The IP address of your database server. Typically, this is `127.0.0.1` for a local database.
+- `DBPORT`: The port number your database server is listening on. The default for MySQL is usually `3306`.
+- `DBUSER`: The username for your database.
+- `DBPASSWORD`: The password for your database. Keep this secure!
+- `DBNAME`: The name of the database you want to connect to.
+
+Here’s an example of what your `.env` file should look like:
+
+```
+DBSERVER="127.0.0.1"
+DBPORT=3306
+DBUSER="DBUSER"
+DBPASSWORD="YOURSTRONGPASSWORD"
+DBNAME="leberkasrechner"
+```
+
+## Securing Installation for Production
+If you want to run your instance publicly, create a database user with only the needed rights (```select``` in the ```butchers``` table) and insert their credentials in the ```.env``` file. Note: The user given in the python code (also change that) needs ```select```, ```insert``` and ```update``` permissions. For example, this could be the SQL query for creating the php user:
 
 ```sql
 CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
@@ -47,13 +70,13 @@ CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpas
 GRANT USAGE ON *.* TO 'yourusername'@'%'; 
 GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%';
 ```
+## Installing the dependencies
 
-
-4. Install the node modules given in the ```package.json``` file:
+5. Install the node modules given in the ```package.json``` file:
 
         npm install
 
-5. A PHP package manager, preferably Composer. Requirements are listet in ```composer.json```. To install the requirements, run
+6. A PHP package manager, preferably Composer. Requirements are listet in ```composer.json```. To install the requirements, run
 
         composer install
 
@@ -69,7 +92,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%
 - [ ] Page titles
 - [ ] Website Footer (Privacy Policy, etc.)
 - [ ] get ```butcher.json``` from ```cdn.phipsiart.at```
-
+- [ ] Docker Image
 # Ressouces 
 Useful notes for dev
 - [taginfo](https://taginfo.openstreetmap.org/tags/shop=butcher#combinations)
