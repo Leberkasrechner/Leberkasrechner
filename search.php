@@ -91,6 +91,8 @@ if (isset($_GET['q'])) {
         <?php // Fetch and display the paged search results
         while ($row = $pagedResult->fetch_assoc()) {
             $curButcher = new Butcher($row["id"], $row["lat"], $row["lon"], $row["tags"]);
+            $drawDash = (!empty($curButcher->getOpeningStateHTML() && !empty($curButcher->address)));
+            if($drawDash) {$drawDash=" - ";}
             echo '
             <div class="list-group-item">
                 <div class="row">
@@ -103,7 +105,7 @@ if (isset($_GET['q'])) {
                     </div>
                     <div class="col text-truncate">
                         <a href="butcher.php?id='.$curButcher->getId().'" class="text-body d-block">'. $curButcher->getName() .'</a>
-                        <div class="text-secondary text-truncate mt-n1">'.$curButcher->getOpeningStateHTML().' - '. $curButcher->address . '</div>
+                        <div class="text-secondary text-truncate mt-n1">'.$curButcher->getOpeningStateHTML(). $drawDash. $curButcher->address . '</div>
                     </div>
                 </div>
             </div>
