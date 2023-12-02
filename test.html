@@ -1,39 +1,30 @@
-<?php
-    
-    $navitems = array(
-        "/" => "Home",
-        "/search_form.php" => "Suche",
-        "https://about.leberkasrechner.de" => "Über"
-    );
-    $searchBoxProp = "";
-    if(!empty($_GET["q"])) {
-      $searchBoxProp = $_GET["q"];
-    }
-
-?>
 </div>
-<div class="container-xl">
-    <nav class="navbar navbar-expand-md d-print-none mb-3">
-        <a class="navbar-brand" href="/">leberkasrechner.de</a>
+<nav class="navbar navbar-expand-md d-print-none mb-3">
+    <div class="container-xl">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
             aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand" href="/">leberkasrechner.de</a>
 
-        <div id="navbar-menu" class="collapse navbar-collapse">
+        <a href=".">
+            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3"></h1>
+        </a>
+
+
+        <div id="navbar menu" class="collapse navbar-collapse">
             <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                 <ul class="navbar-nav">
                     <?php
-                        if(!isset($navbar_highlighted)) {$navbar_highlighted = " ";}
-                        foreach($navitems as $url => $label) {
-                        $isActive = ($navbar_highlighted === $label) ? 'active' : '';
-                        echo "<li class=\"nav-item $isActive\"><a class=\"nav-link $isActive\" href=$url>$label</a></li>";
-                        }
-                    ?>
+            if(!isset($navbar_highlighted)) {$navbar_highlighted = " ";}
+            foreach($navitems as $url => $label) {
+              $isActive = ($navbar_highlighted === $label) ? 'active' : '';
+              echo "<li class=\"nav-item $isActive\"><a class=\"nav-link $isActive\" href=$url>$label</a></li>";
+            }
+          ?>
                 </ul>
             </div>
         </div>
-    </nav>
         <div class="col-2 d-none d-xxl-block">
             <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                 <form role="search" action="/search.php" method="get" autocomplete="off" novalidate="">
