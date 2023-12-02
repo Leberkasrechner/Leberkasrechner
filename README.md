@@ -6,6 +6,7 @@ To run this code, you will need:
 2. PHP
 3. A MySQL-Instance
 4. The [npm](https://npmjs.com) package manager
+5. The [Composer Package Manager](https://getcomposer.org/) for PHP dependencies
 
 ## Creating the Database
 
