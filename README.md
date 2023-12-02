@@ -1,11 +1,15 @@
 # Installation
+
 To run this code, you will need:
+
 1. A Webserver
 2. PHP
 3. A MySQL-Instance
 4. The [npm](https://npmjs.com) package manager
+
 ## Creating the Database
-   Create a database ```leberkasrechner``` and a table ```butcher``` in it:
+
+Create a database `leberkasrechner` and a table `butcher` in it:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS `leberkasrechner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -19,19 +23,19 @@ CREATE TABLE `butchers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-Then, a fulltext index over the ```butchers``` table:
+Then, a fulltext index over the `butchers` table:
 
 ```sql
-ALTER TABLE `leberkasrechner`.`butchers` ADD FULLTEXT (`tags`); 
+ALTER TABLE `leberkasrechner`.`butchers` ADD FULLTEXT (`tags`);
 ```
 
-To fill the database with data, run the ```update_butchers.py``` script:
-
+To fill the database with data, run the `update_butchers.py` script:
 
 ```bash
 python3 update_butchers.py
 py update_butchers.py
 ```
+
 ## Storing Database Credentials
 
 Create a `.env` file by copying the `.env.example` file. This file will store your MySQL database credentials.
@@ -55,28 +59,30 @@ DBNAME="leberkasrechner"
 ```
 
 ## Securing Installation for Production
-If you want to run your instance publicly, create a database user with only the needed rights (```select``` in the ```butchers``` table) and insert their credentials in the ```.env``` file. Note: The user given in the python code (also change that) needs ```select```, ```insert``` and ```update``` permissions. For example, this could be the SQL query for creating the php user:
+
+If you want to run your instance publicly, create a database user with only the needed rights (`select` in the `butchers` table) and insert their credentials in the `.env` file. Note: The user given in the python code (also change that) needs `select`, `insert` and `update` permissions. For example, this could be the SQL query for creating the php user:
 
 ```sql
 CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
-GRANT USAGE ON *.* TO 'yourusername'@'%'; 
+GRANT USAGE ON *.* TO 'yourusername'@'%';
 GRANT SELECT ON `leberkasrechner`.* TO `yourusername`@`%`;
 ```
-   
+
 This could be the code for the python user:
 
 ```sql
 CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
-GRANT USAGE ON *.* TO 'yourusername'@'%'; 
+GRANT USAGE ON *.* TO 'yourusername'@'%';
 GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%';
 ```
+
 ## Installing the dependencies
 
-5. Install the node modules given in the ```package.json``` file:
+5.  Install the node modules given in the `package.json` file:
 
         npm install
 
-6. A PHP package manager, preferably Composer. Requirements are listet in ```composer.json```. To install the requirements, run
+6.  A PHP package manager, preferably Composer. Requirements are listet in `composer.json`. To install the requirements, run
 
         composer install
 
@@ -90,9 +96,12 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%
 - [ ] Features for vegetarian and vegan alternatives
 - [ ] perhaps rating system
 - [ ] Page titles
-- [ ] Website Footer (Privacy Policy, etc.)
-- [ ] get ```butcher.json``` from ```cdn.phipsiart.at```
+- [x] Website Footer (Privacy Policy, etc.)
+- [ ] get `butcher.json` from `cdn.phipsiart.at`
 - [ ] Docker Image
-# Ressouces 
+
+# Ressouces
+
 Useful notes for dev
+
 - [taginfo](https://taginfo.openstreetmap.org/tags/shop=butcher#combinations)
