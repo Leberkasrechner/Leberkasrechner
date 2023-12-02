@@ -84,7 +84,7 @@
                         <?=$butcher->getOpeningHoursHTML();?>
                         <div class="mt-2">
                             <small><i>
-                                <span>Abweichungen an Feiertagen und in den Ferien möglich.</span>
+                                <span>Abweichungen insbesondere an Feiertagen und während der Ferien möglich.</span>
                                 <?php if(!empty($butcher->getOpeningHoursCheckDate())) : ?>
                                     <br><span>
                                         Zuletzt geprüft am
