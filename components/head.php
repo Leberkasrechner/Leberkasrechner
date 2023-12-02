@@ -42,7 +42,20 @@
         --tblr-font-sans-serif: 'Inter';
         }
     </style>
-
+    <style>
+        .homepage_headline{
+            font-weight: bold;
+            font-size: 6rem;
+            font-weight: 800;
+            padding-top: 60px;
+            text-align: center;
+        }
+        .homepage_text{
+         text-align: center;
+         padding-top: 4vh;
+         font-size: 1.5em;
+        }
+    </style>
     <title>Leberkasrechner</title>
 </head>
 <?php if(!isset($dobody)) {

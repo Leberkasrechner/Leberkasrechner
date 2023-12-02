@@ -6,11 +6,10 @@
     require "components/navbar.php";
 ?>
 
-<h1 class="mt-3">Sie haben Leberkasnot? Wir helfen Ihnen!</h1>
-<h2>Auf folgender Karte sehen Sie alle deutschen Metzgereien</h2>
-
+<h1 class="homepage_headline">Leberkasnot?</h1>
+<p class="homepage_text">Finden Sie Ihren Fachhändler. Schnell. Einfach. Kostenlos.</p>
 <div id="meineKarte"></div>
-<style>#meineKarte{height:500px;}</style>
+<style>#meineKarte{height:500px; margin-bottom: 4rem; border-radius: 0.375rem;}</style>
 
 <?php
 require "components/footer.php";

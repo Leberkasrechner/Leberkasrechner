@@ -1,10 +1,13 @@
 import mysql.connector, json, time, sys
-
+from dotenv import load_dotenv
+import os
+load_dotenv('.env')
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="xxxyyy",
-    database="leberkasrechner"
+    host=os.environ.get('DBSERVER'),
+    user=os.environ.get('DBUSER'),
+    password=os.environ.get('DBPASSWORD'),
+    database=os.environ.get('DBNAME'),
+    port=int(os.environ.get('DBPORT'))
 )
 
 cursor = db.cursor()
