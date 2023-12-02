@@ -154,4 +154,6 @@ if (isset($_GET['q'])) {
     // Handle the case when no search string is given
     echo "Error: No search string provided.";
 }
+
+require "components/footer.php";
 ?>
