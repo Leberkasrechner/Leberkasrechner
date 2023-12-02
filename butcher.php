@@ -75,19 +75,23 @@
                     <?php if(!$butcher->getOpeningState()) : ?>
                         <div class="ribbon bg-red">Geschlossen</div>
                     <?php endif ?>
-                    <h3 class="card-header">
-                        Öffnungszeiten
-                    </h3>
                     <div class="card-body">
+                        <h3>
+                            <span class="me-2">Öffnungszeiten</span>
+                            <span class="badge text-red">Beta</span>
+                        </h3>
                         <?=$butcher->getOpeningHoursHTML();?>
-                        <?php if(!empty($butcher->getOpeningHoursCheckDate())) : ?>
                         <div class="mt-2">
                             <small><i>
-                                Zuletzt geprüft am
-                                <?=$butcher->getOpeningHoursCheckDate();?>
+                                <span>Abweichungen an Feiertagen und in den Ferien möglich.</span>
+                                <?php if(!empty($butcher->getOpeningHoursCheckDate())) : ?>
+                                    <br><span>
+                                        Zuletzt geprüft am
+                                        <?=$butcher->getOpeningHoursCheckDate();?>.
+                                    </span>
+                                <?php endif ?>
                             </i></small>
                         </div>
-                        <?php endif ?>
                     </div>
                 </div>
             </div>
@@ -96,8 +100,21 @@
                     <div class="card-body">
                         <?=domap($lat, $lon, $name);?>
                     </div>
-                    <div class="card-footer">
-                        Kartendaten &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende
+                </div>
+                <div class="card mt-3">
+                    <div class="card-stamp">
+                        <div class="card-stamp-icon bg-white text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3" /><path d="M4 6v6c0 1.657 3.582 3 8 3c.478 0 .947 -.016 1.402 -.046" /><path d="M20 12v-6" /><path d="M4 12v6c0 1.526 3.04 2.786 6.972 2.975" /><path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" /></svg>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Daten dieser Seite &copy; <a href="https://osm.org/copyright">OpenStreetMap</a>-Mitwirkende.
+                        </p>
+                        <p>
+                            Auch Du kannst helfen, die Daten aktuell zu halten oder zu erweitern!
+                            Zum Beispiel, indem Du <a href="https://osm.org/node/<?=$_GET["id"]?>">diesen Node auf OpenStreetMap bearbeitest</a>.
+                        </p>
                     </div>
                 </div>
             </div>
