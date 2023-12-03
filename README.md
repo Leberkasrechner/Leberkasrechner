@@ -104,7 +104,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%
 - [x] Add opening hours panel
 - [x] Interaction options for OpenStreetMap
 - [ ] Design Landing Page
-- [ ] New Marker Icon on Front Page
+- [x] New Marker Icon on Front Page
 - [ ] **Image database**
 - [ ] Features for vegetarian and vegan alternatives
 - [ ] perhaps rating system
