@@ -112,6 +112,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%
 - [x] Website Footer (Privacy Policy, etc.)
 - [ ] get `butcher.json` from `cdn.phipsiart.at`
 - [ ] Docker Image
+- [ ] option to colorize butcher map icons depending on their opening state
 
 # Ressouces
 
