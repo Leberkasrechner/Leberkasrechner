@@ -56,7 +56,11 @@
          font-size: 1.5em;
         }
     </style>
-    <title>Leberkasrechner</title>
+    <?php if (isset($page_title)) : ?>
+        <title><?=$page_title?> | Leberkasrechner</title>
+    <?php else: ?>
+        <title>Leberkasrechner</title>
+    <?php endif ?>
 </head>
 <?php if(!isset($dobody)) {
     echo '
