@@ -20,16 +20,20 @@
     .copy{
         padding-left: 3rem;
     }
-    .privacy-link{
-        padding-right: 1rem;
-    }
     </style>
         <div class="footer-line"></div> 
-<footer class="page-footer">
-        <div class="footer-content">
-            <p class="copy">© 2023 leberkasrechner.de</p>
+        <footer class="page-footer">
+        <div class="footer-content container-xl">
+            <p>© 2023 leberkasrechner.de</p>
             <p>Alle Angaben ohne Gewähr.</p>
-            <a class="privacy-link link-secondary" href="/datenschutz.php">Datenschutzerklärung</a>
+            <ul class="list-inline list-inline-dots mb-0">
+                <li class="list-inline-item">
+                    <a class="link-secondary" href="/datenschutz.php">Datenschutzerklärung</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="/contact.php" class="link-secondary">Kontakt</a>
+                </li>
+            </ul>
         </div>
     </footer>
         
