@@ -26,8 +26,8 @@
         $t = json_decode(utf8_encode($tagsJson), true);
         $butcher = new Butcher($id, $lat, $lon, $tagsJson);
         $name = $t["name"];
+        $page_title = $butcher->getName();
     }
-    $page_title = $butcher->getName();
     require "components/head.php";
     require "components/navbar.php";
     require "components/util.php";
