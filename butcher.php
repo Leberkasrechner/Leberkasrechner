@@ -128,6 +128,9 @@
             <?php endif ?>
             <div class="col">
                 <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Kartenansicht</h3>
+                    </div>
                     <div class="card-body">
                         <?=domap($lat, $lon, $name);?>
                     </div>
