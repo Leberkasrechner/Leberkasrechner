@@ -3,6 +3,7 @@
     $navitems = array(
         "/" => "Home",
         "/search_form.php" => "Suche",
+        "/blog.php" => "Blog",
         "https://about.leberkasrechner.de" => "Über"
     );
     $searchBoxProp = "";

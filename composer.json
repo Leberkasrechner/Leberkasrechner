@@ -1,5 +1,6 @@
 {
     "require": {
-        "ujamii/osm-opening-hours": "dev-main"
+        "ujamii/osm-opening-hours": "dev-main",
+        "erusev/parsedown": "^1.7"
     }
 }

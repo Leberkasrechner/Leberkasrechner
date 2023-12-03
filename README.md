@@ -37,6 +37,12 @@ python3 update_butchers.py
 py update_butchers.py
 ```
 
+Last, if you wish to run the blog yourself too, you need a blog post database. Here, blog posts and their timestamps are stored. It's a simple format, so no authors are stored and blogposts can (at this time) only be created directly on the database. You can set up the database with the following command:
+
+```sql
+CREATE TABLE `leberkasrechner`.`blog_posts` (`id` INT NOT NULL AUTO_INCREMENT , `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `modified` TIMESTAMP on update CURRENT_TIMESTAMP NULL , `header` TEXT NOT NULL , `content` LONGTEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+```
+
 ## Storing Database Credentials
 
 Create a `.env` file by copying the `.env.example` file. This file will store your MySQL database credentials.
