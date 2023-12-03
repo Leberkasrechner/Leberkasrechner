@@ -163,7 +163,7 @@
                         </p>
                         <p>
                             Auch Du kannst helfen, die Daten aktuell zu halten oder zu erweitern!
-                            Zum Beispiel, indem Du <a href="https://osm.org/edit?node=<?=$_GET["id"]?>">diesen Node auf OpenStreetMap bearbeitest</a>.
+                            Zum Beispiel, indem Du <a target="_blank" href="https://osm.org/edit?node=<?=$_GET["id"]?>">diesen Node auf OpenStreetMap bearbeitest</a>.
                         </p>
                     </div>
                 </div>
