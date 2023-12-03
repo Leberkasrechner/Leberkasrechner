@@ -17,32 +17,36 @@ $pd = null;
         # Load all blogposts
         global $conn;
         $posts = $conn->query("SELECT * FROM blog_posts;");
-    ?>
-    <?php while($postdata = $posts->fetch_assoc()) : ?>
-    <?php 
-        $created = "Blogpost vom " . (new DateTime($postdata["created"]))->format("d.m.Y");
-        $content = explode("\n\n", $postdata["content"])[0]
-    ?>
-    <div class="row justify-content-center">
-        <div class="col lg-10 col-xl-9">
-            <div class="card mb-3">
-                <div class="card-header">
-                    <h3 class="card-title"><?=$postdata["header"]?>
-                        <span class="card-subtitle"><i><?=$created?></i></span>
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <?=$parsedown->text($content)?>
-                </div>
-                <div class="card-footer">
-                    <a class="btn" href="/blog.php?post=<?=$postdata["id"]?>">
-                        Mehr lesen...
-                    </a>
+        while($postdata = $posts->fetch_assoc()) {
+            $postArray[] = $postdata;
+        }
+        for($i = count($postArray) - 1; $i >= 0; $i--) : 
+            $postdata = $postArray[$i];
+        ?>
+            <?php 
+                $created = "Blogpost vom " . (new DateTime($postdata["created"]))->format("d.m.Y");
+                $content = explode("\n\n", $postdata["content"])[0]
+            ?>
+            <div class="row justify-content-center">
+                <div class="col lg-10 col-xl-9">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h3 class="card-title"><?=$postdata["header"]?>
+                                <span class="card-subtitle"><i><?=$created?></i></span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <?=$parsedown->text($content)?>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn" href="/blog.php?post=<?=$postdata["id"]?>">
+                                Mehr lesen...
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php endwhile ?>
+        <?php endfor ?>
 
 <?php else : ?>
     <?php 
