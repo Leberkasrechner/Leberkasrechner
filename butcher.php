@@ -2,19 +2,15 @@
     $leaflet = true;
     $opening_hours = true;
     $page_title = "Metzgerei";
-    require "components/head.php";
-    require "components/navbar.php";
     require "components/conn.php";
     require "components/butcher.php";
-    require "components/util.php";
+
     global $conn;
     $sql = "SELECT id, lat, lon, tags FROM butchers WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $_GET["id"]);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    if ($result->num_rows == 0) {echo "Keine Ergebnisse gefunden";}
     
     $res = $result->fetch_assoc();
     $id = $res['id'];
@@ -22,11 +18,19 @@
     $lon = $res['lon'];
     $tagsJson = $res['tags'];
     $t = json_decode(utf8_encode($tagsJson), true);
-
     $butcher = new Butcher($id, $lat, $lon, $tagsJson);
-
     $name = $t["name"];
     
+
+    if($result->num_rows == 1) {
+        $page_title = $butcher->getName();
+    }
+
+    require "components/head.php";
+    require "components/navbar.php";
+    require "components/util.php";
+
+    if ($result->num_rows == 0) {echo "Keine Ergebnisse gefunden";}
     ?>
 <style>
     .cards-responsive{
