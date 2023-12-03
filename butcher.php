@@ -95,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php if($butcher->diet_info_available) : ?>
                     <div class="card mt-2">
                         <div class="card-body">
                             <h4>Über das Angebot</h4>
@@ -103,6 +104,7 @@
                             </ul>
                         </div>
                     </div>
+                    <?php endif ?>
                 </div>
                 <?php if($butcher->getOpeningHoursHTML()) : ?>
                 <div class="col">
