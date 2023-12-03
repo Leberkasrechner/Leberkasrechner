@@ -11,6 +11,7 @@
         private $opening_hours;
         private $opening_hours_available;
         private $opening_hours_check_date;
+        public $diet_info_available;
      
         public function __construct($id, $lat, $lon, $tags) {
             $this->id = $id;
@@ -19,6 +20,8 @@
             $this->street = null;
             $this->city = null;
             $this->address = null;
+            $this->diet_info_available = false;
+            $this->getDietInfoHTML();
             # Opening Hours
             if(!empty($this->tags["check_date:opening_hours"])) {
                 $this->opening_hours_check_date = $this->tags["check_date:opening_hours"];
@@ -61,7 +64,7 @@
                 return $this->tags["name"];
             }
         }
-     
+
         public function getDietInfoHTML() {
             $ret = "";
             $texts = Array(
@@ -133,6 +136,7 @@
                 foreach($texts as $key => $meta) {
                 #$meta["icon"]
                 if(!array_key_exists($key, $this->tags)) {continue;}
+                $this->diet_info_available = true;
                 $osmvalue = $this->tags[$key];
                 $ret .= "<li>";
                 $ret .= $icons[$meta[$osmvalue]["type"]];
