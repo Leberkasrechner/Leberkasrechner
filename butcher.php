@@ -11,26 +11,26 @@
     $stmt->bind_param("s", $_GET["id"]);
     $stmt->execute();
     $result = $stmt->get_result();
-    
     $res = $result->fetch_assoc();
-    $id = $res['id'];
-    $lat = $res['lat'];
-    $lon = $res['lon'];
-    $tagsJson = $res['tags'];
-    $t = json_decode(utf8_encode($tagsJson), true);
-    $butcher = new Butcher($id, $lat, $lon, $tagsJson);
-    $name = $t["name"];
     
-
-    if($result->num_rows == 1) {
-        $page_title = $butcher->getName();
+    $noresults = false;
+    if($result->num_rows !== 1) {
+        $noresults = true;
     }
-
+    $id = $lat = $lon = $tagsJson = $t = $butcher = $name = null;
+    if(!$noresults) {
+        $id = $res['id'];
+        $lat = $res['lat'];
+        $lon = $res['lon'];
+        $tagsJson = $res['tags'];
+        $t = json_decode(utf8_encode($tagsJson), true);
+        $butcher = new Butcher($id, $lat, $lon, $tagsJson);
+        $name = $t["name"];
+    }
+    $page_title = $butcher->getName();
     require "components/head.php";
     require "components/navbar.php";
     require "components/util.php";
-
-    if ($result->num_rows == 0) {echo "Keine Ergebnisse gefunden";}
     ?>
 <style>
     .cards-responsive{
@@ -51,7 +51,8 @@
         }
 
     }
-    </style>
+    </style>    
+    <?php if(!$noresults) : ?>
     <div class="page-header d-print-none">
         <div class="row g-2 align-items-center">
             <div class="col">
@@ -61,9 +62,23 @@
             </div>
         </div>
     </div>
-
+    <?php endif ?>
 
     <div class="page-body">
+        <?php if($noresults) : ?>
+            <div class='empty'>
+                <div class='empty-img'><img src='static/svg/no_results.svg' height='128' alt=''>
+                </div>
+                <p class='empty-title'>Metzgerei nicht gefunden</p>
+                <div class='empty-action'>
+                    <a href='/search_form.php' class='btn btn-primary'>
+                        <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-map-pin-search' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M14.916 11.707a3 3 0 1 0 -2.916 2.293' /><path d='M11.991 21.485a1.994 1.994 0 0 1 -1.404 -.585l-4.244 -4.243a8 8 0 1 1 13.651 -5.351' /><path d='M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' /><path d='M20.2 20.2l1.8 1.8' /></svg>
+                        Metzgerei suchen
+                    </a>
+                </div>
+            </div>
+        <?php die(); endif ?>
+
         <div class="row row-cards cards-responsive">
             <div class="col">
                 <div class="card">
