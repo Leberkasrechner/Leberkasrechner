@@ -106,13 +106,14 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%
 - [ ] Design Landing Page
 - [x] New Marker Icon on Front Page
 - [ ] **Image database**
-- [ ] Features for vegetarian and vegan alternatives
+- [x] Features for vegetarian and vegan alternatives
 - [ ] perhaps rating system
 - [ ] Page titles
 - [x] Website Footer (Privacy Policy, etc.)
 - [ ] get `butcher.json` from `cdn.phipsiart.at`
 - [ ] Docker Image
 - [ ] option to colorize butcher map icons depending on their opening state
+- [ ] show missing osm information for every butcher so it's easier to say what to edit
 
 # Ressouces
 
