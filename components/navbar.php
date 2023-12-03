@@ -27,7 +27,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar menu" class="collapse navbar-collapse">
+    <div id="navbar-menu" class="collapse navbar-collapse">
       <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
         <ul class="navbar-nav">
           <?php
