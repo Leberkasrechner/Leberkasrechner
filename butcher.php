@@ -61,26 +61,14 @@
     <div class="page-body">
         <div class="row row-cards cards-responsive">
             <div class="col">
-                <div class="card card-lg">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Infomationen
+                        </h3>
+                    </div>
                     <div class="card-body">
-                        <div class="card-title">
-                            Informationen
-                        </div> 
-                        
-                    
-                        <?php 
-                        # Table with all OSM tags for debugging purposes
-                        /*
-                        echo "<table>";
-
-                        foreach ($t as $key => $value) {
-                            echo "<tr><td>$key</td><td>$value</td></tr>\n";
-                        }
-
-
-                        echo "</table>";
-                        */?>
-                        <div class="mt-3">
+                        <div class="ms-3 me-3">
                             <?=$butcher->getInfoCard();?>
                         </div>
                     </div>
@@ -95,11 +83,13 @@
                     <?php if(!$butcher->getOpeningState()) : ?>
                         <div class="ribbon bg-red">Geschlossen</div>
                     <?php endif ?>
-                    <div class="card-body">
-                        <h3>
+                    <div class="card-header">   
+                        <h3 class="card-title">
                             <span class="me-2">Öffnungszeiten</span>
                             <span class="badge text-red">Beta</span>
                         </h3>
+                    </div>
+                    <div class="card-body">
                         <?=$butcher->getOpeningHoursHTML();?>
                         <div class="mt-2">
                             <small><i>
