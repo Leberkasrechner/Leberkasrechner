@@ -33,16 +33,18 @@ function getValue($table, $column_given, $value_given, $column_searched, $exit=f
         }
     }
 
-    function getEntity($table, $column_given, $value_given, $fetch=true) {
+    function getEntity($table, $column_given, $value_given, $fetch=true, $dbconnection = null) {
 
         global $conn;
+        $dbconn = $conn;
+        if(!empty($dbconnection)) {$dbconn = $dbconnection;} # Wenn übergeben, nutze die angegebene Conncetion
         // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        if ($dbconn->connect_error) {
+            die("Connection failed: " . $dbconn->connect_error);
         }
 
         $sql = "SELECT * FROM $table WHERE $column_given = '$value_given'";
-        $res = $conn->query($sql);
+        $res = $dbconn->query($sql);
         if($res && $res->num_rows>0) {
             if($fetch) { $res = mysqli_fetch_array($res); }
             return $res;
