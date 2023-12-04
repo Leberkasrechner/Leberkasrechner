@@ -8,59 +8,43 @@ To run this code, you will need:
 4. The [npm](https://npmjs.com) package manager
 5. The [Composer Package Manager](https://getcomposer.org/) for PHP dependencies
 
-## Creating the Database
+## Set up the Database
 
-Create a database `leberkasrechner` and a table `butcher` in it:
+To set up the database, you'll only have to run the prepared `database_setup.sql` script. It creates a database `leberkasrechner` with all the neccessary tables, indexes, constraints etc.
 
-```sql
-CREATE DATABASE IF NOT EXISTS `leberkasrechner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `leberkasrechner`;
-
-CREATE TABLE `butchers` (
-        `id` bigint NOT NULL,
-        `lat` double DEFAULT NULL,
-        `lon` double DEFAULT NULL,
-        `tags` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-```
-
-Then, a fulltext index over the `butchers` table:
-
-```sql
-ALTER TABLE `leberkasrechner`.`butchers` ADD FULLTEXT (`tags`);
-```
-
-To fill the database with data, run the `update_butchers.py` script:
+Now, if you wish to fill up your database with butcher data, run the `update_butchers.py` script:
 
 ```bash
 python3 update_butchers.py
 py update_butchers.py
 ```
 
-Now, we'll setup the `users` database. Here, user accounts are stored.
+The `database_setup.sql` script above does *not* set up the database user which does all the queries for website visitors not logged in. You have to do that yourself. Run the following SQL snipped **from your DB root account:**
 
 ```sql
-CREATE TABLE `users` (
-  `id` int NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(500) NOT NULL,
-  `edit` tinyint(1) NOT NULL DEFAULT '0',
-  `admin` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE USER 'lview'@'localhost' IDENTIFIED WITH mysql_native_password BY 'YOURSTRONGPASSWORD';
+GRANT USAGE ON *.* TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.author TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.license TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.image TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.image_butcher TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.butchers TO 'lview'@'localhost';
+GRANT SELECT (`id`, `edit`, `admin`) ON `leberkasrechner`.`users` TO 'lview'@'localhost'; 
+ALTER USER 'lview'@'localhost' ;
 ```
 
-Last, if you wish to run the blog yourself too, you need a blog post database. Here, blog posts and their timestamps are stored. It's a simple format, so no authors are stored and blogposts can (at this time) only be created directly on the database. You can set up the database with the following command:
+**Don't forget to replace the password with your own, strong one.** This db user will be used for the sql-queries needed for the readonly-part of the website (*not the internal part of it*). You can also change the username (`lview` in the snippet), but that's not neccessary.
+
+Now, we'll need a second account which can create new database accounts and has the rights to do so. With this account, the code will be able to create new database accounts with `SELECT`, `INSERT`, `UDPATE` and `DELETE` rights for *website frontend accounts*. To create this user, run the following SQL-snippet **from your DB root account:**
 
 ```sql
-CREATE TABLE `blog_posts` (
-    `id` int(11) NOT NULL,
-    `created` timestamp NOT NULL DEFAULT current_timestamp(),
-    `modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-    `header` text NOT NULL,
-    `content` longtext NOT NULL
-) ENGINE=InnoDB;
+CREATE USER 'lusercreate'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ANOTHER_STRONGPASSWORD';
+GRANT INSERT ON leberkasrechner.users TO 'lusercreate'@'localhost';
+GRANT CREATE USER ON leberkasrechner.* TO 'lusercreate'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner TO 'lusercreate'@'localhost' WITH GRANT OPTION;
 ```
+
+Again, don't forget to replace the password with your own, strong one and **do NOT use the same password as for the `lview` account!**
 
 ## Storing Database Credentials
 
@@ -69,64 +53,53 @@ Create a `.env` file by copying the `.env.example` file. This file will store yo
 Here's what each variable in the `.env` file represents:
 
 - `DBSERVER`: The IP address of your database server. Typically, this is `127.0.0.1` for a local database.
-- `DBPORT`: The port number your database server is listening on. The default for MySQL is usually `3306`.
-- `DBUSER`: The username for your database.
-- `DBPASSWORD`: The password for your database. Keep this secure!
-- `DBNAME`: The name of the database you want to connect to.
+- `DBPORT`: The port number your database server is listening on. The default for MySQL and MariaDB is usually `3306`.
+- `DBUSER`: The username for your database *view* user (`lview` in this example) .
+- `DBPASSWORD`: The password for your database *view* user. Keep this secure!
+- `UC_DBUSER`: The username for your database user *with extended rights* (`lcreateuser` in this example)
+- `UC_DBPASSWORD`: The password for your database user *with extended rights*. Keep this secure!
+- `DBNAME`: The name of the database you want to connect to. (Note: Currently, only the name `leberkasrechner` is supported due to some bad programming)
 
 Here’s an example of what your `.env` file should look like:
 
-```
+```ini
 DBSERVER="127.0.0.1"
 DBPORT=3306
 DBUSER="DBUSER"
 DBPASSWORD="YOURSTRONGPASSWORD"
+DBUSER="ANOTER_DBUSER"
+DBPASSWORD="ANOTHER_STRONGPASSWORD"
 DBNAME="leberkasrechner"
-```
-
-## Securing Installation for Production
-
-If you want to run your instance publicly, create a database user with only the needed rights (`select` in the `butchers` table) and insert their credentials in the `.env` file. Note: The user given in the python code (also change that) needs `select`, `insert` and `update` permissions. For example, this could be the SQL query for creating the php user:
-
-```sql
-CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
-GRANT USAGE ON *.* TO 'yourusername'@'%';
-GRANT SELECT ON `leberkasrechner`.* TO `yourusername`@`%`;
-```
-
-This could be the code for the python user:
-
-```sql
-CREATE USER 'yourusername'@'%' IDENTIFIED WITH caching_sha2_password BY 'yourpassword';
-GRANT USAGE ON *.* TO 'yourusername'@'%';
-GRANT SELECT, INSERT, UPDATE, DELETE ON `leberkasrechner`.* TO 'yourusername'@'%';
 ```
 
 ## Installing the dependencies
 
-5.  Install the node modules given in the `package.json` file:
-
-        npm install
+Last, you will have to install the node modules given in the `package.json` file:
+```bash
+npm install
+```
 
 6.  A PHP package manager, preferably Composer. Requirements are listet in `composer.json`. To install the requirements, run
 
-        composer install
+```bash
+composer install
+```
 
 # To do
 
-- [x] Add opening hours panel
-- [x] Interaction options for OpenStreetMap
 - [ ] Design Landing Page
-- [x] New Marker Icon on Front Page
 - [ ] **Image database**
-- [x] Features for vegetarian and vegan alternatives
 - [ ] perhaps rating system
 - [ ] Page titles
-- [x] Website Footer (Privacy Policy, etc.)
 - [ ] get `butcher.json` from `cdn.phipsiart.at`
 - [ ] Docker Image
 - [ ] option to colorize butcher map icons depending on their opening state
 - [ ] show missing osm information for every butcher so it's easier to say what to edit
+- [x] Add opening hours panel
+- [x] Interaction options for OpenStreetMap
+- [x] Website Footer (Privacy Policy, etc.)
+- [x] Features for vegetarian and vegan alternatives
+- [x] New Marker Icon on Front Page
 
 # Ressouces
 

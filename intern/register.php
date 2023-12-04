@@ -39,14 +39,20 @@
             }else if($password!=$confirmPassword){
                 $confirmPasswordErrorMsg = "Passwort und Passwortbestätigung müssen gleich sein.";
             }
+
+            # Für den Zugriff auf die Benutzerdatenbank ist ein eigenständiger Benutzeraccount zuständig. Hier in der Variable $grant_conn gespeichert.
+            $env = parse_ini_file(__DIR__ . '/../.env');
+            $grant_conn = new mysqli($env["DBSERVER"], $env["UC_DBUSER"], $env["UC_DBPASSWORD"], $env["DBNAME"], intval($env["DBPORT"]));
+
             // E-Mail-Adresse prüfen
-            if(getEntity("users", "email", $email)!==false) {$emailErrorMsg="E-Mail-Adresse bereits belegt";}
+            if(getEntity("users", "email", $email, true, $grant_conn)!==false) {$emailErrorMsg="E-Mail-Adresse bereits belegt";}
+            
             // Benutzername prüfen
-            if(getEntity("users", "username", $username)!==false) {$emailErrorMsg="Benutzername bereits belegt";}
+            if(getEntity("users", "username", $username, true, $grant_conn)!==false) {$emailErrorMsg="Benutzername bereits belegt";}
             
             if($error == "" && $usernameErrorMsg == "" && $emailErrorMsg == "" && $passwordErrorMsg == "" && $confirmPasswordErrorMsg == ""){
                 $passwordhash = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES(?, ?, ?)");
+                $stmt = $grant_conn->prepare("INSERT INTO users (username, email, password) VALUES(?, ?, ?)");
                 $stmt->bind_param("sss", $username, $email, $passwordhash);
                 $stmt->execute();
 
@@ -55,16 +61,17 @@
 
                 $dbusername = "lusr_" . $username;
                 $createUserSql = "CREATE USER '$dbusername'@'localhost' IDENTIFIED BY '$password'";
-                if ($conn->query($createUserSql) === TRUE) {
+                if ($grant_conn->query($createUserSql) === TRUE) {
                     // Benutzer erfolgreich erstellt, jetzt Berechtigungen erteilen
+                    // Hierfür gibt es einen eigenen Benutzer
                     $grantPermissionSql = "GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.* TO '$dbusername'@'localhost'";
-                    if ($conn->query($grantPermissionSql) === TRUE) {
+                    if ($grant_conn->query($grantPermissionSql) === TRUE) {
                         echo "Neuer Benutzer wurde erfolgreich erstellt und Berechtigungen erteilt";
                     } else {
-                        echo "Fehler beim Erteilen von Berechtigungen: " . $conn->error;
+                        echo "Fehler beim Erteilen von Berechtigungen: " . $grant_conn->error;
                     }
                 } else {
-                    echo "Fehler beim Erstellen des Benutzers: " . $conn->error;
+                    echo "Fehler beim Erstellen des Benutzers: " . $grant_conn->error;
                 }
                 global $userconn;
                 $env = parse_ini_file(__DIR__ . '/../.env');
