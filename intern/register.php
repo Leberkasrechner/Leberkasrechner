@@ -52,7 +52,26 @@
 
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $email;
-                header("location: ./login.php?as=1");
+
+                $dbusername = "lusr_" . $username;
+                $createUserSql = "CREATE USER '$dbusername'@'localhost' IDENTIFIED BY '$password'";
+                if ($conn->query($createUserSql) === TRUE) {
+                    // Benutzer erfolgreich erstellt, jetzt Berechtigungen erteilen
+                    $grantPermissionSql = "GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.* TO '$dbusername'@'localhost'";
+                    if ($conn->query($grantPermissionSql) === TRUE) {
+                        echo "Neuer Benutzer wurde erfolgreich erstellt und Berechtigungen erteilt";
+                    } else {
+                        echo "Fehler beim Erteilen von Berechtigungen: " . $conn->error;
+                    }
+                } else {
+                    echo "Fehler beim Erstellen des Benutzers: " . $conn->error;
+                }
+                global $userconn;
+                $env = parse_ini_file(__DIR__ . '/../.env');
+                $userconn = new mysqli($env["DBSERVER"], $dbusername, $password, $env["DBNAME"], intval($env["DBPORT"]));
+                $_SESSION["userconn"] = $userconn;
+                
+                #header("location: ./login.php?as=1");
             }
         }
 ?>

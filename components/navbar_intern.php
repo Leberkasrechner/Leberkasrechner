@@ -7,6 +7,16 @@
     } else {
       header("location: ./login.php");
     }
+    global $conn;
+    if(isset($usr_conn)) {
+        $conn = false;
+        # Datenbankverbindung aufbauen
+        $env = parse_ini_file(__DIR__ . '/../.env');
+        $conn = new mysqli($env["DBSERVER"], $_SESSION["dbusername"], $_SESSION["dbpassword"], $env["DBNAME"], intval($env["DBPORT"]));
+        if (!$conn) {
+            $conn = false;
+        }
+    }
     
     $navitems = array(
         "/intern/" => "Home",

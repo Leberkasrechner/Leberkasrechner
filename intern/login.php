@@ -39,6 +39,20 @@
                     $_SESSION["email"] = $finduser["email"];
                     $_SESSION["username"] = $finduser["username"];
                     $_SESSION["loggedin"] = true;
+
+                    # DB User
+                    $env = parse_ini_file(__DIR__ . '/../.env');
+                    $dbusername = "lusr_" . $finduser["username"];
+                    # Kurz Verbindung aufbauen, um zu prüfen, ob sie funktioniert:
+                    $userconn = new mysqli($env["DBSERVER"], $dbusername, $passwordhash, $env["DBNAME"], intval($env["DBPORT"]));
+                    if($userconn->connect_error) {
+                        die("DB Connection Error");
+                    } else {
+                        $userconn->close();
+                    }
+                    # Wenn ja, die Zugangsdaten auf dem Server speichern
+                    $_SESSION["dbusername"] = $dbusername;
+                    $_SESSION["dbpassword"] = $passwordhash;
                     header("location: ../intern?success=true");
                     exit();
                 } else {
