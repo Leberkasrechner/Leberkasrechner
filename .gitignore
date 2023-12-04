@@ -2,3 +2,4 @@ node_modules/
 static/butchers.json
 vendor/
 .env
+static/butchers.json
