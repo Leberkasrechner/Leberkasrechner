@@ -17,7 +17,7 @@
         </div>
     </div>
     <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-    </div>';
+    </div>
 <?php endif ?>
 <h1 class="mt-3">Willkommen im internen Bereich!</h1>
 <span class="mb-3">Hier können Sie die Datenbank hinter www.anrufschranke.de bearbeiten.</span>
