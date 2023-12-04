@@ -1,7 +1,7 @@
 
 
 <?php
-    require "vendor/autoload.php";
+    require __DIR__ . '/../vendor/autoload.php';
     use Spatie\OpeningHours\OpeningHours;
     use Ujamii\OsmOpeningHours\OsmStringToOpeningHoursConverter;
      
