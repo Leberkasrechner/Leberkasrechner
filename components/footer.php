@@ -1,40 +1,35 @@
 
 </div></div>
-<style>
-    .footer-content{
-        display: flex;
-        padding-top: 0.9rem;
-        justify-content: space-between;
-    }
-    .page-footer{
-        background-color: #fff;
-        height: 4rem;
-        margin-bottom: 0;
-        padding-top: 10px;
-        width: 100%;
-    }
-    .footer-line{
-        border-top: 1px solid #dadfe5; 
-        width: 100%;
-    }
-    .copy{
-        padding-left: 3rem;
-    }
-    </style>
-        <div class="footer-line"></div> 
-        <footer class="page-footer">
-        <div class="footer-content container-xl">
-            <p>© 2023 leberkasrechner.de</p>
-            <p>Alle Angaben ohne Gewähr.</p>
-            <ul class="list-inline list-inline-dots mb-0">
-                <li class="list-inline-item">
-                    <a class="link-secondary" href="/datenschutz.php">Datenschutzerklärung</a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="/contact.php" class="link-secondary">Kontakt</a>
-                </li>
-            </ul>
+
+<div class="footer-line"></div> 
+
+<footer class="footer footer-transparent d-print-none">
+    <div class="container-xl">
+        <div class="row text-center align-items-center flex-row-reverse">
+            <div class="col-lg-auto ms-lg-auto">
+                <ul class="list-inline list-inline-dots mb-0">
+                    <li class="list-inline-item">
+                        <a href="./kontakt.php" target="_blank" class="link-secondary" rel="noopener">Kontakt</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="./datenschutz.php" class="link-secondary">Datenschutzerklärung</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                <ul class="list-inline list-inline-dots mb-0">
+                    <li class="list-inline-item">
+                        © 2023 leberkasrechner.de
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://github.com/Leberkasrechner" class="link-secondary" rel="noopener">
+                            GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </footer>
+    </div>
+</footer>
         
 </html>
