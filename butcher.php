@@ -80,8 +80,8 @@
                     </div>
                 </div>
             <?php die(); endif ?>
-     
-            <div class="row row-cards cards-responsive">
+            
+            <div class="row row-cards row-cols-sm-1 row-cols-md-3">
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
