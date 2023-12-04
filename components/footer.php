@@ -9,7 +9,7 @@
             <div class="col-lg-auto ms-lg-auto">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
-                        <a href="./kontakt.php" target="_blank" class="link-secondary" rel="noopener">Kontakt</a>
+                        <a href="./contact.php" class="link-secondary">Kontakt</a>
                     </li>
                     <li class="list-inline-item">
                         <a href="./datenschutz.php" class="link-secondary">Datenschutzerklärung</a>
