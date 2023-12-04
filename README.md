@@ -69,13 +69,13 @@ Here's what each variable in the `.env` file represents:
 Here’s an example of what your `.env` file should look like:
 
 ```ini
-DBSERVER="127.0.0.1"
-DBPORT=3306
-DBUSER="DBUSER"
-DBPASSWORD="YOURSTRONGPASSWORD"
-DBUSER="ANOTER_DBUSER"
-DBPASSWORD="ANOTHER_STRONGPASSWORD"
-DBNAME="leberkasrechner"
+DBSERVER = "127.0.0.1"
+DBPORT = 3306
+DBUSER = "DBUSER"
+DBPASSWORD = "YOURSTRONGPASSWORD"
+UC_DBUSER = "ANOTER_DBUSER"
+UC_DBPASSWORD = "ANOTHER_STRONGPASSWORD"
+DBNAME = "leberkasrechner"
 ```
 
 ## Installing the dependencies
