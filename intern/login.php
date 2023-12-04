@@ -10,9 +10,13 @@
 
 <?php 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = mysqli_real_escape_string($conn, $_POST["email"]);
-        $passwordhash = mysqli_real_escape_string($conn, $_POST["password"]);
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        # Hier wird der User mit Rootrechten benötigt.
+        $env = parse_ini_file(__DIR__ . '/../.env');
+        $grant_conn = new mysqli($env["DBSERVER"], $env["UC_DBUSER"], $env["UC_DBPASSWORD"], $env["DBNAME"], intval($env["DBPORT"]));
+
+        $email = mysqli_real_escape_string($grant_conn, $_POST["email"]);
+        $password = mysqli_real_escape_string($grant_conn, $_POST["password"]);
+        $passwordhash = password_hash($password, PASSWORD_DEFAULT);
 
             if($email == ""){
                 $emailErrorMsg = "Bitte E-Mail-Adresse angeben"; 
@@ -25,14 +29,14 @@
 
         if($emailErrorMsg == "" && $passwordErrorMsg == ""){
             $emailquery = "SELECT email, username, password FROM users WHERE email = ?";
-            $emailstmt = $conn->prepare($emailquery);
+            $emailstmt = $grant_conn->prepare($emailquery);
             $emailstmt->bind_param("s", $email);
             $emailstmt->execute();
             $emailres = $emailstmt->get_result();
             $finduser = $emailres->fetch_assoc();
             if($finduser){
                 // Benutzer existiert; Passwort eingeben
-                $doesmatch = password_verify($passwordhash, $finduser["password"]);
+                $doesmatch = password_verify($password, $finduser["password"]);
                 if($doesmatch) {
                     session_name("leberkasrechner_sessid");
                     session_start();
@@ -44,7 +48,7 @@
                     $env = parse_ini_file(__DIR__ . '/../.env');
                     $dbusername = "lusr_" . $finduser["username"];
                     # Kurz Verbindung aufbauen, um zu prüfen, ob sie funktioniert:
-                    $userconn = new mysqli($env["DBSERVER"], $dbusername, $passwordhash, $env["DBNAME"], intval($env["DBPORT"]));
+                    $userconn = new mysqli($env["DBSERVER"], $dbusername, $password, $env["DBNAME"], intval($env["DBPORT"]));
                     if($userconn->connect_error) {
                         die("DB Connection Error");
                     } else {
@@ -52,7 +56,7 @@
                     }
                     # Wenn ja, die Zugangsdaten auf dem Server speichern
                     $_SESSION["dbusername"] = $dbusername;
-                    $_SESSION["dbpassword"] = $passwordhash;
+                    $_SESSION["dbpassword"] = $password;
                     header("location: ../intern?success=true");
                     exit();
                 } else {
