@@ -37,6 +37,19 @@ python3 update_butchers.py
 py update_butchers.py
 ```
 
+Now, we'll setup the `users` database. Here, user accounts are stored.
+
+```sql
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(500) NOT NULL,
+  `edit` tinyint(1) NOT NULL DEFAULT '0',
+  `admin` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
+
 Last, if you wish to run the blog yourself too, you need a blog post database. Here, blog posts and their timestamps are stored. It's a simple format, so no authors are stored and blogposts can (at this time) only be created directly on the database. You can set up the database with the following command:
 
 ```sql
