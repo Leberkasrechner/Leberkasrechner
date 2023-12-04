@@ -54,7 +54,7 @@
                                     <td><?=$row["username"]?></td>
                                     <td class='text-secondary'><?=$row["email"]?></td>
                                     <td class='text-secondary'><?=$role?></td>
-                                    <td><a href="edit_user.php?id=<?=$row["id"]?>" class="">Bearbeiten</a></td>
+                                    <td><a href="user.php?id=<?=$row["id"]?>" class="">Bearbeiten</a></td>
                                 </tr>
                             <?php endwhile;
                             echo "</tbody></table>";
