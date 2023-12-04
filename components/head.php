@@ -34,6 +34,7 @@
     
     <!--Tabler-->
     <link rel="stylesheet" href="/static/tabler/tabler.css"/>
+    <script src="/static/tabler/tabler.min.js"></script>
     <!--Custom CSS-->
     <link rel="stylesheet" href="/static/custom.css"/>
     <!--Inter-->
