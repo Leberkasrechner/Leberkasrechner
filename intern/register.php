@@ -64,7 +64,7 @@
                 if ($grant_conn->query($createUserSql) === TRUE) {
                     // Benutzer erfolgreich erstellt, jetzt Berechtigungen erteilen
                     // Hierfür gibt es einen eigenen Benutzer
-                    $grantPermissionSql = "GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.* TO '$dbusername'@'localhost'";
+                    $grantPermissionSql = "GRANT SELECT ON leberkasrechner.* TO '$dbusername'@'localhost'";
                     if ($grant_conn->query($grantPermissionSql) === TRUE) {
                         echo "Neuer Benutzer wurde erfolgreich erstellt und Berechtigungen erteilt";
                     } else {

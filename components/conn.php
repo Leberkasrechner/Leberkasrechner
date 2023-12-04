@@ -10,22 +10,20 @@ if ($conn->connect_error) {
 
 
 
-function getValue($table, $column_given, $value_given, $column_searched, $exit=false) {
-        
+function getValue($table, $column_given, $value_given, $column_searched, $exit=false, $dbconnection = null) {
+        global $conn;
+        $dbconn = $conn;
+        if(!empty($dbconnection)) {$dbconn = $dbconnection;} # Wenn übergeben, nutze die angegebene Conncetion
+
+
         if(!(isset($table) && isset($column_given) && isset($value_given) && isset($column_searched))) {
             return " ";
         }
-        global $conn;
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
-        $sql = "SELECT $column_searched FROM $table WHERE $column_given = $value_given";
-        $res = $conn->query($sql);
+        $sql = "SELECT $column_searched FROM $table WHERE $column_given = '$value_given'";
+        $res = $dbconn->query($sql);
         if($res && $res->num_rows>0) {
-            $ret = mysqli_fetch_array($res)[0];
+            $ret = $res->fetch_assoc()[$column_searched];
             return $ret;
         } else {
             if($exit) {exit();}

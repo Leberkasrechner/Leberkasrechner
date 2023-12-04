@@ -1,4 +1,5 @@
 <?php
+    require "../components/conn.php";
     session_name("leberkasrechner_sessid");
     session_start();
     // Check if user is logged in
@@ -7,15 +8,19 @@
     } else {
       header("location: ./login.php");
     }
-    global $conn;
-    if(isset($usr_conn)) {
-        $conn = false;
+    $myconn = false;
+    $canedit = $isadmin = null;
+    if(isset($domyconn)) {
         # Datenbankverbindung aufbauen
         $env = parse_ini_file(__DIR__ . '/../.env');
-        $conn = new mysqli($env["DBSERVER"], $_SESSION["dbusername"], $_SESSION["dbpassword"], $env["DBNAME"], intval($env["DBPORT"]));
-        if (!$conn) {
-            $conn = false;
+        $myconn = new mysqli($env["DBSERVER"], $_SESSION["dbusername"], $_SESSION["dbpassword"], $env["DBNAME"], intval($env["DBPORT"]));
+        if (!$myconn) {
+            $myconn = false;
+            die("Connection error");
         }
+        $canedit = getValue("users", "username", $_SESSION["username"], "edit", false, $myconn);
+        $canedit = getValue("users", "username", "admin", "edit", false, $myconn);
+        $isadmin = getValue("users", "username", $_SESSION["username"], "admin", false, $myconn);
     }
     
     $navitems = array(
