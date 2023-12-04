@@ -5,9 +5,8 @@
 
 
 
-    // Daten aus der Datenbank abrufen
     $id = $_GET["id"];
-    $query = "SELECT * FROM users WHERE id = ?";
+    $query = "SELECT id, username, email, `edit`, `admin` FROM users WHERE id = ?";
     $stmt = mysqli_prepare($myconn, $query);
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
@@ -19,22 +18,40 @@
     }
     $user = mysqli_fetch_assoc($result);
     
-    // Validierung und Verarbeitung der Formulardaten
+    // Verarbeitung
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
         $edit = isset($_POST["edit"]) ? 1 : 0;
         $admin = isset($_POST["admin"]) ? 1 : 0;
 
-        // Validierung der Eingaben
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            // SQL-Query in ein prepared statement umwandeln
+            # Update user database
             $id = $_GET["id"];
             $query = "UPDATE users SET email = ?, edit = ?, admin = ? WHERE id = ?";
             $stmt = mysqli_prepare($myconn, $query);
             mysqli_stmt_bind_param($stmt, "siii", $email, $edit, $admin, $id);
             mysqli_stmt_execute($stmt);
+            # Update user privileges
+            $dbusername = "'lusr_" . getValue("users", "id", $_GET["id"], "username", true, $myconn) . "'@'localhost'";
+            $privsql = "REVOKE ALL PRIVILEGES ON *.* FROM $dbusername;";
+            if($admin) {$privsql .= "   
+                                GRANT CREATE USER ON *.* TO $dbusername; ALTER USER $dbusername ; 
+                                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.butchers TO $dbusername;
+                                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO $dbusername;
+                                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO $dbusername;
+                                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image TO $dbusername;
+                                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.license TO $dbusername;
+                                GRANT SELECT (id, username, email, edit, admin),
+                                      UPDATE (id, username, email, edit, admin) ON leberkasrechner.users TO $dbusername ;";
+            } elseif($user) { $privsql .= "
+                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.butchers TO $dbusername;
+                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO $dbusername;
+                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO $dbusername;
+                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image TO $dbusername;
+                GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.license TO $dbusername; ";
+            }
+            echo $privsql;
         } else {
-            // Fehlerbehandlung, falls die Eingaben ungültig sind
         }
     }
 
@@ -45,7 +62,7 @@
         $stmt = mysqli_prepare($myconn, $query);
         mysqli_stmt_bind_param($stmt, "i", $id);
         mysqli_stmt_execute($stmt);
-        echo '<div class="modal modal-blur fade show" id="modal-success" tabindex="-1" role="dialog" style="display: block;" aria-modal="true"> <div class="modal-dialog modal-sm modal-dialog-centered" role="document"> <div class="modal-content"> <div class="modal-status bg-success"></div> <div class="modal-body text-center py-4"> <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-green icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M9 12l2 2l4 -4"></path></svg> <h3>Account gelöscht</h3> <div class="text-secondary">Dieser Account wurde endgültig gelöscht.</div> </div> <div class="modal-footer"> <div class="w-100"> <div class="row"> <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal"> Zurück zur Benutzerübersicht </a></div> </div> </div> </div> </div> </div> </div>';  
+        header("Location: user_delete_success.php");
     } 
     if (isset($_GET["delete"])) : ?>
 

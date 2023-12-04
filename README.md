@@ -40,8 +40,14 @@ Now, we'll need a second account which can create new database accounts and has 
 ```sql
 CREATE USER 'lusercreate'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ANOTHER_STRONGPASSWORD';
 GRANT INSERT ON leberkasrechner.users TO 'lusercreate'@'localhost';
-GRANT CREATE USER ON leberkasrechner.* TO 'lusercreate'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT CREATE USER ON *.* TO 'lusercreate'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.butchers TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.license TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT (id, username, email, edit, admin) ON leberkasrechner.users TO lusercreate@localhost WITH GRANT OPTION; 
+ALTER USER lusercreate@localhost ; 
 ```
 
 Again, don't forget to replace the password with your own, strong one and **do NOT use the same password as for the `lview` account!**
