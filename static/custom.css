@@ -1,0 +1,89 @@
+#meineKarte {
+    height: 500px;
+    margin-bottom: 4rem;
+    border-radius: 0.375rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem 0
+}
+
+@media(min-width:768px) {
+    .hero {
+        padding: 6.5rem 0
+    }
+}
+
+.hero-subheader {
+    text-transform: uppercase;
+    color: #0054a6;
+    font-weight: 500;
+    font-size: .75rem;
+    margin-bottom: 1rem;
+    letter-spacing: .04em
+}
+
+.hero-title {
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -.02em
+}
+
+@media(min-width:560px) {
+    .hero-title {
+        font-size: 2rem;
+        line-height: 2.5rem
+    }
+}
+
+@media(min-width:960px) {
+    .hero-title {
+        font-size: 3rem;
+        line-height: 3.25rem
+    }
+}
+
+.hero-description {
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 47rem
+}
+
+@media(min-width:560px) {
+    .hero-description {
+        font-size: 1.125rem
+    }
+}
+
+@media(min-width:960px) {
+    .hero-description {
+        font-size: 1.25rem
+    }
+}
+
+.hero-img {
+    margin: 6.5rem auto;
+    max-width: 67.5rem;
+    border-radius: .375rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 15px -3px rgba(59, 69, 78, .1), 0 4px 6px -2px rgba(59, 69, 78, .05)
+}
+
+.hero-img img,
+.hero-img svg {
+    position: relative
+}
+
+.hero-img img,
+.hero-img svg,
+.hero-img-side img,
+.hero-img-side svg {
+    max-width: 100%;
+    height: auto;
+    display: block
+}

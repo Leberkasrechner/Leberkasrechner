@@ -31,6 +31,10 @@
         <!--OSM opening_hours evaluation tool-->
         <script src="/node_modules/opening_hours/build/opening_hours.js"></script>
     <?php endif ?>
+    <?php if(isset($customcss)) : ?>
+        <!--OSM opening_hours evaluation tool-->
+        <link rel="stylesheet" href="/static/custom.css"/>
+    <?php endif ?>
     
     <!--Tabler-->
     <link rel="stylesheet" href="/static/tabler/tabler.css"/>
