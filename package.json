@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "baguettebox.js": "^1.11.1",
     "leaflet": "^1.9.4",
     "leaflet-contextmenu": "^1.4.0",
     "leaflet-fullscreen": "^1.0.2",
