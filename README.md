@@ -78,6 +78,13 @@ UC_DBPASSWORD = "ANOTHER_STRONGPASSWORD"
 DBNAME = "leberkasrechner"
 ```
 
+## Set up your PHP installation
+With the Leberkasrechner, file are possible to do via web. If you wish to allow that on your instance, you'll have to enable these in your PHP config if they're not enabled by default. To do so, in your `php.ini` file, just set `file_uploads` to `On`. Further, you can specify your temporary upload folder and the maximum upload file size.
+```ini
+file_uploads=On
+upload_max_filesize=60M
+```
+
 ## Installing the dependencies
 
 Last, you will have to install the node modules given in the `package.json` file:
