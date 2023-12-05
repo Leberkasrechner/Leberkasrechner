@@ -70,25 +70,34 @@
     }
 }
 
-.hero-img {
-    margin: 6.5rem auto;
-    max-width: 67.5rem;
-    border-radius: .375rem;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 10px 15px -3px rgba(59, 69, 78, .1), 0 4px 6px -2px rgba(59, 69, 78, .05)
+.hero-btn {
+    border-radius : 7px;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.04),0 4px 6px -2px rgba(0,0,0,.02);
 }
 
-.hero-img img,
-.hero-img svg {
-    position: relative
+.hero-btn-second {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.04),0 4px 6px -2px rgba(0,0,0,.02);
 }
 
-.hero-img img,
-.hero-img svg,
-.hero-img-side img,
-.hero-img-side svg {
-    max-width: 100%;
-    height: auto;
-    display: block
+.hero-btn-second:hover {
+    border-color: rgb(165,173,218);
 }
+
+.hero-actions {
+    margin-top: 2.5rem !important;
+}
+
+
+.hero-map-title {
+    font-weight: 800;
+    font-size: 30px;
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+
+:not([data-bs-theme='dark']) #meineKarte {
+    box-shadow: 1px 1px 23px #888;
+}
+  

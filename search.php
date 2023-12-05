@@ -9,13 +9,13 @@ require "components/butcher.php";
 
 if (isset($_GET['q'])) {
     //SQL-Abfrage
-    $searchString = $_GET['q'];
+    $searchString = mysqli_real_escape_string($conn, $_GET['q']);
     $currentPage = 1;
     if(!empty($_GET["page"])) {$currentPage = $_GET["page"];}
-    $sql = "SELECT * FROM butchers WHERE MATCH (tags) AGAINST ('" . mysqli_real_escape_string($conn, $searchString) . "')";
+    $sql = "SELECT * FROM butchers WHERE MATCH (tags) AGAINST ('" . $searchString . "')";
     $result = $conn->query($sql);
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows == 0) : ?>
         
     echo "  <div class='empty'>
                 <div class='empty-img'><img src='static/svg/no_results.svg' height='128' alt=''>
@@ -45,7 +45,8 @@ if (isset($_GET['q'])) {
                 </div>
             </div>";
         
-    } else {
+    <?php endif;
+    if ($result->num_rows > 0) {
         // Seitenaufteilung bei mehr als 10 Ergebnissen
         $resultsPerPage = 10;
         $totalResults = $result->num_rows;

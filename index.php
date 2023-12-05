@@ -15,9 +15,24 @@
         <p class="hero-description mt-4">
             Finden Sie Ihren Fachhändler. Schnell. Einfach. Kostenlos.
         </p>
+        <div class="row hero-actions justify-content-center">
+            <div class="col-auto">
+                <a href="search_form.php" class="btn hero-btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+                    Metzgerei suchen
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="contribute.php" class="btn hero-btn hero-btn-second">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3" /><path d="M4 6v6c0 1.657 3.582 3 8 3c1.075 0 2.1 -.08 3.037 -.224" /><path d="M20 12v-6" /><path d="M4 12v6c0 1.657 3.582 3 8 3c.166 0 .331 -.002 .495 -.006" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
+                    Mitmachen
+                </a>
+            </div>
+        </div>
     </div>
 </header>
-
+<div class="hr"></div>
+<h1 class="hero-map-title">Oder doch lieber auf der Karte?</h1>
 <div id="meineKarte"></div>
 <style></style>
 
