@@ -34,7 +34,7 @@
     <?php if(isset($tom_select)) : ?>
         <!--OSM opening_hours evaluation tool-->
         <script src="/node_modules/tom-select/dist/js/tom-select.complete.js"></script>
-        <link rel="stylesheet" href="/node_modules/tom-select/dist/css/tom-select.bootstrap5.min.css"/>
+        <link rel="stylesheet" href="/node_modules/tom-select/dist/css/tom-select.css"/>
     <?php endif ?>
     
     <!--Tabler-->

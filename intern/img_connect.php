@@ -168,7 +168,6 @@
     async function renderButchers() {
         allButchers = await getButchers();
         result = Object.assign({}, allButchers);
-        console.log(result)
         
         Object.values(result).forEach((butcher, index) => {
             options.push({
@@ -184,7 +183,12 @@
             searchField: 'title',
             sortField: 'title',
             options: options,
-            create: false
+            create: false,
+    		render:{
+    			item: function(data,escape) {
+    				return '<div><span class="dropdown-item-indicator">' + escape(data.title) + '</span></div>';
+    			},
+    		},
         });
 
     }
