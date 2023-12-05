@@ -1,7 +1,9 @@
 <?php
     require "../components/conn.php";
-    session_name("leberkasrechner_sessid");
-    session_start();
+    if(session_status() !== PHP_SESSION_ACTIVE) {
+        session_name("leberkasrechner_sessid");
+        session_start();
+    }
     // Check if user is logged in
     if($_SESSION["loggedin"] == true) {
       // Authentifikation erfolgreich; Nichts passiert
