@@ -42,6 +42,9 @@
     <script src="/static/tabler/tabler.min.js"></script>
     <!--Custom CSS-->
     <link rel="stylesheet" href="/static/custom.css"/>
+    <!--BaguetteBox-->
+    <script src="/node_modules/baguettebox.js/dist/baguetteBox.min.js"></script>
+    <link rel="stylesheet" href="/node_modules/baguettebox.js/dist/baguetteBox.min.css"/>
     <!--Inter-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
