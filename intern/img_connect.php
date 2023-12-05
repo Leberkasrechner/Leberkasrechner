@@ -104,7 +104,7 @@
                 $butcherError = "Selected butcher does not exist.";
             } else {
                 // If the input is valid, insert the relationship into the database
-                insertImageButcher($selectedImage, $selectedBahnübergang);
+                insertImageButcher($selectedImage, $selectedButcher);
                 $successMessage = "Image and butcher connected successfully.";
             }
         }
