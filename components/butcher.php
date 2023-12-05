@@ -277,6 +277,29 @@
                 return null;
             }
         }
+
+        function getImageIDs($conn) {
+            $butcherId = $this->getId();
+            // SQL-Abfrage, um die Bilder-IDs für den gegebenen Metzger zu erhalten
+            $sql = "SELECT i.id 
+                    FROM image i
+                    INNER JOIN image_butcher ib ON i.id = ib.image
+                    WHERE ib.butcher = $butcherId";
+        
+            $result = $conn->query($sql);
+        
+            if (!$result) {
+                return false;
+            }
+        
+            $imageIds = array();
+        
+            while ($row = $result->fetch_assoc()) {
+                $imageIds[] = $row['id'];
+            }
+    
+            return $imageIds;
+        }
      
         public function getId() {
             return $this->id;
