@@ -23,7 +23,7 @@
     
     $navitems = array(
         "/intern/" => "Home",
-        "/img_menu.php" => "Bilder",
+        "/intern/img_menu.php" => "Bilder",
     );
 
 ?>

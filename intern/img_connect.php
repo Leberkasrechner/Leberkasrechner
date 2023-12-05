@@ -1,6 +1,7 @@
 <?php
     $navbar_highlighted = "Bilder";
     $tom_select = true;
+    $page_title = "Bilder verlinken";
     require "../components/head.php";
     require "../components/butcher.php";
     require "../components/navbar_intern.php";

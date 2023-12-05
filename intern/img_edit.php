@@ -1,5 +1,6 @@
 <?php
 $navbar_highlighted = "Bilder";
+$page_title = "Bilddaten bearbeiten";
 require "../components/head.php";
 require "../components/navbar_intern.php";
 
