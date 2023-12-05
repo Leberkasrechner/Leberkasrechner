@@ -10,21 +10,20 @@
     }
     $myconn = false;
     $canedit = $isadmin = null;
-    if(isset($domyconn)) {
-        # Datenbankverbindung aufbauen
-        $env = parse_ini_file(__DIR__ . '/../.env');
-        $myconn = new mysqli($env["DBSERVER"], $_SESSION["dbusername"], $_SESSION["dbpassword"], $env["DBNAME"], intval($env["DBPORT"]));
-        if (!$myconn) {
-            $myconn = false;
-            die("Connection error");
-        }
-        $canedit = getValue("users", "username", $_SESSION["username"], "edit", false, $myconn);
-        $canedit = getValue("users", "username", "admin", "edit", false, $myconn);
-        $isadmin = getValue("users", "username", $_SESSION["username"], "admin", false, $myconn);
+    # Datenbankverbindung aufbauen
+    $env = parse_ini_file(__DIR__ . '/../.env');
+    $myconn = new mysqli($env["DBSERVER"], $_SESSION["dbusername"], $_SESSION["dbpassword"], $env["DBNAME"], intval($env["DBPORT"]));
+    if (!$myconn) {
+        $myconn = false;
+        die("Connection error");
     }
+    $canedit = getValue("users", "username", $_SESSION["username"], "edit", false, $myconn);
+    $canedit = getValue("users", "username", "admin", "edit", false, $myconn);
+    $isadmin = getValue("users", "username", $_SESSION["username"], "admin", false, $myconn);
     
     $navitems = array(
         "/intern/" => "Home",
+        "/img_menu.php" => "Bilder",
     );
 
 ?>
