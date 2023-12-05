@@ -6,6 +6,7 @@
         $page_title = "Metzgerei";
         require "components/conn.php";
         require "components/butcher.php";
+        require "components/gallery.php";
      
         global $conn;
         $sql = "SELECT id, lat, lon, tags FROM butchers WHERE id = ?";
@@ -104,6 +105,16 @@
                             </ul>
                         </div>
                     </div>
+                    <?php endif ?>
+                    <?php if($butcher->getImageIDs($conn)) : ?>
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h3 class="card-title">Gallerie</h3>
+                            </div>
+                            <div class="card-body">
+                            <?=gallery($butcher->getImageIDs($conn));?>
+                            </div>
+                        </div>
                     <?php endif ?>
                 </div>
                 <?php if($butcher->getOpeningHoursHTML()) : ?>
