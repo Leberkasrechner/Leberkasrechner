@@ -49,7 +49,7 @@ if (isset($_GET['id'])) {
     $imageDetails = null;
     $imageDetails['img_header'] = $imageDetails['description'] = $imageDetails['date'] = 
     $imageDetails['date'] = $imageDetails['date_sort'] = $imageDetails['license'] = "";
-    die();
+    $showModal = true;
 }
 
 // Handle form submission
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
+<?php if (!$showModal) : ?>
 <div class="container">
     <h1 class="mt-3">Bild bearbeiten</h1>
 
@@ -127,21 +127,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="1">Copyright (Keine Weiternutzung erlaubt)</option>
             </select>
         </div>
-        <?php if(!$showModal) {
-            echo '
-            <div class="row g-2 align-items-center">
-                <div class="col-6 col-sm-4 col-md-2 col-xl py-3">
-                    <button type="submit" class="btn btn-primary">Aktualisieren</button>
-                </div>
-                <div class="col-6 col-sm-4 col-md-2 col-xl py-3">
-                    <a class="btn btn-secondary col-6 col-sm-4 col-md-2 col-xl-auto" href="/img_connect.php?id=' . $imageId . '">Bild zu Eintrag hinzufügen/von Eintrag entfernen</a>
-                </div>
-            </div>'
-            ;
-        } ?>
+        <div class="row g-2 align-items-center">
+            <div class="col-6 col-sm-4 col-md-2 col-xl py-3">
+                <button type="submit" class="btn btn-primary">Aktualisieren</button>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2 col-xl py-3">
+                <a class="btn btn-secondary col-6 col-sm-4 col-md-2 col-xl-auto" href="img_connect.php?id=<?=$imageId?>">Bild zu Eintrag hinzufügen/von Eintrag entfernen</a>
+            </div>
+        </div>
     </form>
-
-    <?php if ($showModal) : ?>
+    <?php else : ?>
         <div class="modal modal-blur fade show" id="modal-simple" tabindex="-1" style="display: block;" aria-modal="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
