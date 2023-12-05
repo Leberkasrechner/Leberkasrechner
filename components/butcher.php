@@ -13,7 +13,7 @@
         private $opening_hours_check_date;
         public $diet_info_available;
      
-        public function __construct($id, $lat, $lon, $tags) {
+        public function __construct($id, $lat, $lon, $tags, $oh=true) {
             $this->id = $id;
             $this->tags = json_decode(utf8_encode($tags), true);;
             $this->house = null;
@@ -27,7 +27,7 @@
                 $this->opening_hours_check_date = $this->tags["check_date:opening_hours"];
             }
             $this->formatAddress();
-            $this->renderOpeningHours();
+            if($oh) {$this->renderOpeningHours();}
         }
      
         # TODO: Konstruktor, der nur $id als Eingabewert hat und dann die Daten
