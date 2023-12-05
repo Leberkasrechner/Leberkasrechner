@@ -1,5 +1,15 @@
 <!DOCTYPE html>
+<?php
+    # Load theme
+    session_name("leberkasrechner_sessid");
+    session_start();
+    if(isset($_GET["theme"]) && $_GET["theme"] == "dark") {$_SESSION["l_theme"] = "dark";}
+    if(isset($_GET["theme"]) && $_GET["theme"] == "light") {$_SESSION["l_theme"] = "light";}
+    if(isset($_SESSION["l_theme"]) && $_SESSION["l_theme"]=="dark") : ?>
+<html lang="de" data-bs-theme="dark">
+    <?php else : ?>
 <html lang="de">
+    <?php endif ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,10 +84,12 @@
         <title>Leberkasrechner</title>
     <?php endif ?>
 </head>
-<?php if(!isset($dobody)) {
-    echo '
-<body class="layout-condensed">
+<?php if(isset($_SESSION["l_theme"]) && $_SESSION["l_theme"]=="dark") : ?>
+<body class="layout-condensed theme-dark">
     <div class="page">
         <div class="container-xl">
-    ';
-}
+<?php else : ?>
+<body class="layout-condensed theme-light">
+    <div class="page">
+        <div class="container-xl">
+<?php endif ?>
