@@ -4,8 +4,8 @@ import os
 load_dotenv('.env')
 db = mysql.connector.connect(
     host=os.environ.get('DBSERVER'),
-    user=os.environ.get('DBUSER'),
-    password=os.environ.get('DBPASSWORD'),
+    user=os.environ.get('UC_DBUSER'),
+    password=os.environ.get('UC_DBPASSWORD'),
     database=os.environ.get('DBNAME'),
     port=int(os.environ.get('DBPORT'))
 )
