@@ -54,7 +54,8 @@
             }
      
         }
-        </style>    
+    </style> 
+    <div class="page">
         <?php if(!$noresults) : ?>
         <div class="page-header d-print-none">
             <div class="row g-2 align-items-center">
@@ -192,9 +193,8 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-     
-     
      
      
      
