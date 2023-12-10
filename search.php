@@ -15,35 +15,36 @@ if (isset($_GET['q'])) {
     $sql = "SELECT * FROM butchers WHERE MATCH (tags) AGAINST ('" . $searchString . "')";
     $result = $conn->query($sql);
 
+    # Keine Suchergebnisse
     if ($result->num_rows == 0) : ?>
         
-    echo "  <div class='empty'>
-                <div class='empty-img'><img src='static/svg/no_results.svg' height='128' alt=''>
+        <div class='empty'>
+            <div class='empty-img'><img src='static/svg/no_results.svg' height='128' alt=''>
+            </div>
+            <p class='empty-title'>Keine Ergebnisse gefunden</p>
+            <p class='empty-subtitle text-secondary'>
+                Suchen Sie ihre Metzgerei auf unserer Karte:
+            </p>
+            <div class='empty-action'>
+            <a href='/' class='btn btn-primary'>
+                <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-map-pin-search' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M14.916 11.707a3 3 0 1 0 -2.916 2.293' /><path d='M11.991 21.485a1.994 1.994 0 0 1 -1.404 -.585l-4.244 -4.243a8 8 0 1 1 13.651 -5.351' /><path d='M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' /><path d='M20.2 20.2l1.8 1.8' /></svg>
+                Karte deutscher Metzgereien
+            </a>
+            </div>
+            <p class='empty-subtitle text-secondary empty-action'>
+                Oder probieren Sie es mit anderen Suchbegriffen:
+            </p>
+            <div class='empty-action'>
+                <form role='search' action='/search.php' method='get' autocomplete='off' novalidate=''>
+                <div class='input-icon'>
+                    <span class='input-icon-addon'>
+                        <svg xmlns='http://www.w3.org/2000/svg' class='icon' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'></path><path d='M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0'></path><path d='M21 21l-6 -6'></path></svg>
+                    </span>
+                    <input type='text' name='q' class='form-control' placeholder='Neuer Suchbegriff...' aria-label='Metzgereien suchen'>
                 </div>
-                <p class='empty-title'>Keine Ergebnisse gefunden</p>
-                <p class='empty-subtitle text-secondary'>
-                    Suchen Sie ihre Metzgerei auf unserer Karte:
-                </p>
-                <div class='empty-action'>
-                    <a href='/' class='btn btn-primary'>
-                    <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-map-pin-search' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M14.916 11.707a3 3 0 1 0 -2.916 2.293' /><path d='M11.991 21.485a1.994 1.994 0 0 1 -1.404 -.585l-4.244 -4.243a8 8 0 1 1 13.651 -5.351' /><path d='M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' /><path d='M20.2 20.2l1.8 1.8' /></svg>
-                    Karte deutscher Metzgereien
-                    </a>
-                </div>
-                <p class='empty-subtitle text-secondary empty-action'>
-                    Oder probieren Sie es mit anderen Suchbegriffen:
-                </p>
-                <div class='empty-action'>
-                    <form role='search' action='/search.php' method='get' autocomplete='off' novalidate=''>
-                    <div class='input-icon'>
-                        <span class='input-icon-addon'>
-                            <svg xmlns='http://www.w3.org/2000/svg' class='icon' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'></path><path d='M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0'></path><path d='M21 21l-6 -6'></path></svg>
-                        </span>
-                        <input type='text' name='q' value='$searchBoxProp' class='form-control' placeholder='Metzgerei suchen...' aria-label='Metzgereien suchen'>
-                    </div>
-                    </form>
-                </div>
-            </div>";
+                </form>
+            </div>
+        </div>
         
     <?php endif;
     if ($result->num_rows > 0) {
