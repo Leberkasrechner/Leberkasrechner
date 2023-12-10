@@ -147,12 +147,21 @@
      
         private function renderOpeningHours() {
             # Turns OSM opening_hours tag into an spatie/opening_hours object for further use
+            
             if(empty($this->tags["opening_hours"])||strlen($this->tags["opening_hours"]<3)) {return "";}
             $ret = "";
             try {
                 $opstr = preg_replace('/(,|;)\s+/', '$1', $this->tags["opening_hours"]); # Leerzeichen nach komma oder semikolon entfernen
                 $opstr = preg_replace('/\b(\d{1}:\d{2})\b/', '0$1', $opstr); # aus 6:30 mach 06:30
-                $this->opening_hours = OsmStringToOpeningHoursConverter::openingHoursFromOsmString($opstr);
+                set_error_handler(function() { /* ignore errors */ });
+                try {
+                    $this->opening_hours = OsmStringToOpeningHoursConverter::openingHoursFromOsmString($opstr);
+                } catch (TypeError $e) {
+                    // Error/Warning while trying to parse opening hours; nothing is done here
+                    // and the availability state of the opening hours is beeing set to 0
+                    $this->opening_hours_available = false;
+                }
+                restore_error_handler();
                 $this->opening_hours_available = true;
             } catch (Exception $e) {
                 # opening hours could not be parsed
@@ -178,11 +187,15 @@
      
         public function getOpeningStateHTML() {
             # Sendet HTML-Text, "Geöffnet" oder "Geschlossen"
-            if(!$this->opening_hours_available) {return "";}
+            if(!$this->opening_hours_available) {return null;}
             $ret = "";
             
             $now = new DateTime('now');
-            $range = $this->opening_hours->currentOpenRange($now);
+            try {
+                $range = $this->opening_hours->currentOpenRange($now);
+            } catch (Error $e) {
+                return false;
+            }
      
             if($range) {
                 $ret = "<span class='text-lime'>Geöffnet</span>";
@@ -278,7 +291,7 @@
             }
         }
 
-        function getImageIDs($conn) {
+        public function getImageIDs($conn) {
             $butcherId = $this->getId();
             // SQL-Abfrage, um die Bilder-IDs für den gegebenen Metzger zu erhalten
             $sql = "SELECT i.id 
@@ -309,4 +322,3 @@
             return json_decode($this->tags, true);
         }
     }
-
