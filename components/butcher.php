@@ -28,6 +28,7 @@
             }
             $this->formatAddress();
             if($oh) {$this->renderOpeningHours();}
+            if(!isset($this->opening_hours)) {$this->opening_hours_available = false;}
         }
      
         # TODO: Konstruktor, der nur $id als Eingabewert hat und dann die Daten
@@ -248,6 +249,7 @@
         }
      
         public function getOpeningHoursHTML() {
+            if(!$this->opening_hours_available) {return false;}
             $daydic = Array(
                 "monday" => "Montag",
                 "tuesday" => "Dienstag",
@@ -258,7 +260,6 @@
                 "sunday" => "Sonntag"
             );
             $ret = "";
-            if(!$this->opening_hours_available) {return false;}
             $ret .= '<div class="table-responsive"><table class="table table-vcenter table-hover card-table">';
             $ret .= '<thead><tr><th>Tag</th><th>Öffnungszeiten</th></tr></thead>';
             foreach (['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day) {
@@ -283,6 +284,7 @@
         }
      
         public function getOpeningHoursCheckDate() {
+            if(!$this->opening_hours_available) {return null;}
             if(empty($this->opening_hours_check_date)) {return null;}
             try {
                 return (new DateTime($this->opening_hours_check_date))->format('d.m.Y');
