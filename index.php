@@ -3,8 +3,8 @@
     $lmap = true;
     $navbar_highlighted = "Home";
     $customcss = true;
-    require "components/head.php";
-    require "components/navbar.php";
+    require __DIR__ ."/components/head.php";
+    require __DIR__ ."/components/navbar.php";
 ?>
 
 <header class="hero">

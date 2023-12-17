@@ -7,6 +7,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE DATABASE IF NOT EXISTS `leberkasrechner`;
 
 CREATE TABLE `author` (
   `id` int NOT NULL,
@@ -20,14 +21,14 @@ CREATE TABLE `blog_posts` (
   `modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `header` text NOT NULL,
   `content` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `butchers` (
   `id` bigint NOT NULL,
   `lat` double DEFAULT NULL,
   `lon` double DEFAULT NULL,
   `tags` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 DELIMITER $$
 CREATE TRIGGER `butchers_after_delete` AFTER DELETE ON `butchers` FOR EACH ROW BEGIN
   INSERT INTO butchers_log (table_name, change_type, butcher_id, old_value)
@@ -60,7 +61,7 @@ CREATE TABLE `butchers_log` (
   `butcher_id` bigint DEFAULT NULL,
   `old_value` text,
   `new_value` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `image` (
   `id` int NOT NULL,
@@ -226,6 +227,29 @@ ALTER TABLE `image_butcher`
   ADD CONSTRAINT `image_butcher_ibfk_1` FOREIGN KEY (`image`) REFERENCES `image` (`id`),
   ADD CONSTRAINT `image_butcher_ibfk_2` FOREIGN KEY (`butcher`) REFERENCES `butchers` (`id`);
 COMMIT;
+
+CREATE USER 'lview'@'localhost' IDENTIFIED BY 'JbMyvjuaJgMYyVhK5RcEuaGGKDof65CB8atFkLW2Euwu3PnLzPv2GhCBrBnDXU6W';
+GRANT USAGE ON *.* TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.author TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.license TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.image TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.image_butcher TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.butchers TO 'lview'@'localhost';
+GRANT SELECT ON leberkasrechner.blog_posts TO 'lview'@'localhost';
+GRANT SELECT (`id`, `edit`, `admin`) ON `leberkasrechner`.`users` TO 'lview'@'localhost'; 
+ALTER USER 'lview'@'localhost' ;
+
+CREATE USER 'lusercreate'@'localhost' IDENTIFIED BY 'Cj4xtm8SaZe5sNnnE2DbXRay92i47TTum5UtJKHFLDbipDAfpMH9tFL2bRuYS2Kg';
+GRANT INSERT ON leberkasrechner.users TO 'lusercreate'@'localhost';
+GRANT CREATE USER ON *.* TO 'lusercreate'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.butchers TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.license TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.blog_posts TO 'lview'@'localhost' WITH GRANT OPTION;
+GRANT SELECT (id, username, email, edit, admin) ON leberkasrechner.users TO lusercreate@localhost WITH GRANT OPTION; 
+ALTER USER lusercreate@localhost ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,3 +3,5 @@ static/butchers.json
 vendor/
 .env
 img/
+Dockerfile
+install-docker.md
