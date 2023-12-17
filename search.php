@@ -83,75 +83,82 @@ if (isset($_GET['q'])) {
 
 
 
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header">
                 <h3 class="card-title">Suchergebnisse</h3>
             </div>
             <div class="card-body">
-            <div class="list-group list-group-flush overflow-auto" style="max-height: 35rem">
+                <div class="list-group list-group-flush">
 
-        <?php // Fetch and display the paged search results
-        while ($row = $pagedResult->fetch_assoc()) {
-            $curButcher = new Butcher($row["id"], $row["lat"], $row["lon"], $row["tags"]);
-            $drawDash = (!empty($curButcher->getOpeningStateHTML() && !empty($curButcher->address)));
-            if($drawDash) {$drawDash=" - ";}
-            echo '
-            <div class="list-group-item">
-                <div class="row">
-                    <div class="col-auto">
-                        <a href="butcher.php?id='.$curButcher->getId().'">
-                            <span class="avatar">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-meat" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821" /><path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071z" /><path d="M7.5 16l1 1" /><path d="M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121" /></svg>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="col text-truncate">
-                        <a href="butcher.php?id='.$curButcher->getId().'" class="text-body d-block">'. $curButcher->getName() .'</a>
-                        <div class="text-secondary text-truncate mt-n1">'.$curButcher->getOpeningStateHTML(). $drawDash. $curButcher->address . '</div>
-                    </div>
+                    <?php // Fetch and display the paged search results
+                    while ($row = $pagedResult->fetch_assoc()) {
+                        $curButcher = new Butcher($row["id"], $row["lat"], $row["lon"], $row["tags"]);
+                        $drawDash = (!empty($curButcher->getOpeningStateHTML() && !empty($curButcher->address)));
+                        if($drawDash) {$drawDash=" - ";}
+                        echo '
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <a href="butcher.php?id='.$curButcher->getId().'">
+                                        <span class="avatar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-meat" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821" /><path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071z" /><path d="M7.5 16l1 1" /><path d="M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121" /></svg>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="col text-truncate">
+                                    <a href="butcher.php?id='.$curButcher->getId().'" class="text-body d-block">'. $curButcher->getName() .'</a>
+                                    <div class="text-secondary text-truncate mt-n1">'.$curButcher->getOpeningStateHTML(). $drawDash. $curButcher->address . '</div>
+                                </div>
+                            </div>
+                        </div>
+                        ';
+                    }
+                    ?> 
                 </div>
             </div>
-            ';
-        }
-        ?> 
+            <div class="card-footer">
+                <div class="d-flex align-items-center">
+                    <ul class="pagination">
+                        <?php
+                        # Determinate if first and last icons should be shown
+                        $disableFirst = $disableLast = "";
+                        if ($currentPage < 4) {$disableFirst="disabled";}
+                        if ($currentPage + 3 < $totalPages) {$disableLast="disabled";}
+                        # back
+                        $backPage = $currentPage-1;
+                        echo '
+                            <li class="page-item'.$disableFirst.'">
+                                <a class="page-link" href="search.php?q='.$searchString.'&page='.$backPage.'" tabindex="-1" aria-disabled="true">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 6l-6 6l6 6"></path></svg>
+                                </a>
+                            </li>
+                        ';
+                        # In between
+                        for ($i = max(1, $currentPage - 3); $i <= min($totalPages, $currentPage + 3); $i++) {
+                            $active = "";
+                            if ($i == $currentPage) {$active = "active";} 
+                            echo '<li class="page-item '.$active.'">
+                                <a class="page-link" href="search.php?q='.$searchString.'&page='.$i.'" tabindex="-1" aria-disabled="true">
+                                    '.$i.'    
+                                </a>
+                            </li>';
+                        }
+                        # next
+                        $nextPage = $currentPage+1;
+                        echo '
+                            <li class="page-item'.$disableLast.'">
+                                <a class="page-link" href="search.php?q='.$searchString.'&page='.$nextPage.'" tabindex="-1" aria-disabled="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 6l6 6l-6 6"></path></svg>
+                                </a>
+                            </li>
+                        ';
+                        } ?>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <ul class="pagination">
-            <?php
-            # Determinate if first and last icons should be shown
-            $disableFirst = $disableLast = "";
-            if ($currentPage < 4) {$disableFirst="disabled";}
-            if ($currentPage + 3 < $totalPages) {$disableLast="disabled";}
-            # back
-            $backPage = $currentPage-1;
-            echo '
-                <li class="page-item'.$disableFirst.'">
-                    <a class="page-link" href="search.php?q='.$searchString.'&page='.$backPage.'" tabindex="-1" aria-disabled="true">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 6l-6 6l6 6"></path></svg>
-                    </a>
-                </li>
-            ';
-            # In between
-            for ($i = max(1, $currentPage - 3); $i <= min($totalPages, $currentPage + 3); $i++) {
-                $active = "";
-                if ($i == $currentPage) {$active = "active";} 
-                echo '<li class="page-item '.$active.'">
-                    <a class="page-link" href="search.php?q='.$searchString.'&page='.$i.'" tabindex="-1" aria-disabled="true">
-                        '.$i.'    
-                    </a>
-                </li>';
-            }
-            # next
-            $nextPage = $currentPage+1;
-            echo '
-                <li class="page-item'.$disableLast.'">
-                    <a class="page-link" href="search.php?q='.$searchString.'&page='.$nextPage.'" tabindex="-1" aria-disabled="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 6l6 6l-6 6"></path></svg>
-                    </a>
-                </li>
-            ';
-            }
-        echo "</ul></div>";
+<?php
 } else {
     // Handle the case when no search string is given
     echo "Error: No search string provided.";
