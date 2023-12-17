@@ -116,39 +116,80 @@
                             <?=gallery($butcher->getImageIDs($conn));?>
                             </div>
                         </div>
+                    <?php else : ?>
+                        <div class="col">
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h3 class="card-title">Bilder hinzufügen</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        Für diesen Metzger gibt es leider
+                                        <strong>noch keine Bilder!</strong>
+                                        <a href="contribute.php">Hilf mit</a> und lade
+                                        ein Bild hoch!
+                                    </p>
+                                    <a class="btn btn-outline mt-2" target="_blank" href="/intern/img_upload.php">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-camera-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20h-7a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v3.5" /><path d="M16 19h6" /><path d="M19 16v6" /><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
+                                        Bild hochladen
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     <?php endif ?>
                 </div>
                 <?php if($butcher->getOpeningHoursHTML()) : ?>
-                <div class="col">
-                    <div class="card">
-                        <?php if($butcher->getOpeningState()) : ?>
-                            <div class="ribbon bg-lime">Geöffnet</div>
-                        <?php endif ?>
-                        <?php if(!$butcher->getOpeningState()) : ?>
-                            <div class="ribbon bg-red">Geschlossen</div>
-                        <?php endif ?>
-                        <div class="card-header">   
-                            <h3 class="card-title">
-                                <span class="me-2">Öffnungszeiten</span>
-                                <span class="badge text-red">Beta</span>
-                            </h3>
-                        </div>
-                        <div class="card-body">
-                            <?=$butcher->getOpeningHoursHTML();?>
-                            <div class="mt-2">
-                                <small><i>
-                                    <span>Abweichungen insbesondere an Feiertagen und während der Ferien möglich.</span>
-                                    <?php if(!empty($butcher->getOpeningHoursCheckDate())) : ?>
-                                        <span>
-                                            Zuletzt geprüft am
-                                            <?=$butcher->getOpeningHoursCheckDate();?>.
-                                        </span>
-                                    <?php endif ?>
-                                </i></small>
+                    <div class="col">
+                        <div class="card">
+                            <?php if($butcher->getOpeningState()) : ?>
+                                <div class="ribbon bg-lime">Geöffnet</div>
+                            <?php endif ?>
+                            <?php if(!$butcher->getOpeningState()) : ?>
+                                <div class="ribbon bg-red">Geschlossen</div>
+                            <?php endif ?>
+                            <div class="card-header">   
+                                <h3 class="card-title">
+                                    <span class="me-2">Öffnungszeiten</span>
+                                    <span class="badge text-red">Beta</span>
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <?=$butcher->getOpeningHoursHTML();?>
+                                <div class="mt-2">
+                                    <small><i>
+                                        <span>Abweichungen insbesondere an Feiertagen und während der Ferien möglich.</span>
+                                        <?php if(!empty($butcher->getOpeningHoursCheckDate())) : ?>
+                                            <span>
+                                                Zuletzt geprüft am
+                                                <?=$butcher->getOpeningHoursCheckDate();?>.
+                                            </span>
+                                        <?php endif ?>
+                                    </i></small>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php else : ?>
+                    <div class="col">
+                        <div class="card bg-warning-lt">
+                            <div class="card-header">
+                                <h3 class="card-title">Hier fehlen Informationen!</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Zu diesem Metzger liegen
+                                    <strong>leider keine Öffnungszeiten</strong>
+                                    vor! <a href="contribute.php">Hilf mit</a>,
+                                    die Daten zu verbessern und 
+                                    bearbeite diesen Node auf OpenStreetMap.
+                                </p>
+                                <a class="btn btn-outline mt-2" target="_blank" href="https://osm.org/edit?node=<?=$_GET["id"]?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M12.794 21.322a2 2 0 0 1 -2.207 -.422l-4.244 -4.243a8 8 0 1 1 13.59 -4.616" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
+                                    Zu OpenStreetMap
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif ?>
                 <div class="col">
                     <div class="card">
