@@ -2,6 +2,7 @@
 $leaflet = true;
 $lmap = true;
 $navbar_highlighted = "Karte";
+$page_title = "Karte";
 $fluid = true;
 require __DIR__ . "/components/head.php";
 require __DIR__ . "/components/navbar.php";

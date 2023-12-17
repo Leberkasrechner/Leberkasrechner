@@ -1,5 +1,6 @@
 <?php
 $navbar_highlighted = "Suche";
+$page_title = "Suche";
 require "components/head.php";
 require "components/navbar.php";
 ?>

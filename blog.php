@@ -1,5 +1,6 @@
 <?php
 $navbar_highlighted = "Blog";
+$page_title = "Blog";
 require __DIR__ . "/components/conn.php";
 require __DIR__ . "/components/head.php";
 require __DIR__ . "/components/navbar.php";
