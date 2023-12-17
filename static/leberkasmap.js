@@ -124,6 +124,6 @@ fetch("/static/butchers.json")
   .then((response) => response.json())
   .then((jsonData) => {
     butchers = jsonData;
-    lmap = new leberkasMap("meineKarte");
+    lmap = new leberkasMap("lmap");
   })
   .catch((error) => console.error(error));

@@ -84,12 +84,20 @@
         <title>Leberkasrechner</title>
     <?php endif ?>
 </head>
+<?php 
+    $layout = "layout-condensed";
+    $divlayout ="container-xl";
+    if(isset($fluid)) {
+        $layout = "layout-fluid";
+        $divlayout = "";
+    } 
+?>
 <?php if(isset($_SESSION["l_theme"]) && $_SESSION["l_theme"]=="dark") : ?>
-<body class="layout-condensed theme-dark">
+<body class="<?=$layout?> theme-dark">
     <div class="page">
-        <div class="container-xl">
+        <div class="<?=$divlayout?>">
 <?php else : ?>
-<body class="layout-condensed theme-light">
+<body class="<?=$layout?> theme-light">
     <div class="page">
-        <div class="container-xl">
+        <div class="<?=$divlayout?>">
 <?php endif ?>

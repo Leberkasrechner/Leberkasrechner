@@ -33,7 +33,7 @@
 </header>
 <div class="hr"></div>
 <h1 class="hero-map-title">Oder doch lieber auf der Karte?</h1>
-<div id="meineKarte"></div>
+<div id="lmap"></div>
 <style></style>
 
 <?php
