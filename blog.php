@@ -1,9 +1,9 @@
 <?php
 $navbar_highlighted = "Blog";
-require "components/conn.php";
-require "components/head.php";
-require "components/navbar.php";
-require "vendor/autoload.php";
+require __DIR__ . "/components/conn.php";
+require __DIR__ . "/components/head.php";
+require __DIR__ . "/components/navbar.php";
+require __DIR__ . "/vendor/autoload.php";
 $parsedown = new Parsedown();
 if(!empty($_GET["post"])) {
     $postid = $_GET["post"];
