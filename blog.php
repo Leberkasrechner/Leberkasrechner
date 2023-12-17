@@ -81,14 +81,14 @@ $pd = null;
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                <?=utf8_encode($pd["header"])?>
+                <?=($pd["header"])?>
                 <span class="card-subtitle">
                     <?=$created?>
                 </span>
             </h3>
         </div>
         <div class="card-body">
-            <?=$parsedown->text(utf8_encode($pd["content"]))?>
+            <?=$parsedown->text(($pd["content"]))?>
         </div>
     </div>
 
