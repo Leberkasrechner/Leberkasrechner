@@ -5,7 +5,7 @@ function domap($lat, $lon, $text){
     $ret .= " <script>
     var map = L.map('map').setView([$lat, $lon], 13);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://tiles.leberkasrechner.de/tile/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>-Mitwirkende'
     }).addTo(map);
     
