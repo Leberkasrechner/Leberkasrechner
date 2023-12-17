@@ -83,7 +83,7 @@
                 </div>
             <?php die(); endif ?>
             
-            <div class="row row-cards row-cols-sm-1 row-cols-md-3">
+            <div class="row row-cards row-cols-1 row-cols-md-2 row-cols-lg-3">
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
