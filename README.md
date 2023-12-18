@@ -104,7 +104,7 @@ composer install
 
 - [ ] Design Landing Page
 - [ ] perhaps rating system
-- [ ] get `butcher.json` from `cdn.phipsiart.at`
+- [x] get `butcher.json` from `cdn.phipsiart.at`
 - [ ] Docker Image
 - [ ] option to colorize butcher map icons depending on their opening state
 - [ ] show missing osm information for every butcher so it's easier to say what to edit
