@@ -170,6 +170,7 @@ if(!isset($_GET['q'])) : ?>
             </h2>
         </div>
     </div>
+    </div>
     <div class="page-body"> 
         <?php require "components/butcherSearchForm.php"; ?>
     </div>
