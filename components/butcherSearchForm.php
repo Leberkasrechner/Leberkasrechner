@@ -1,3 +1,5 @@
+<?php if(!isset($modal) && $modal = false) : ?>
+
 <form role="search" action="/search.php" method="get" autocomplete="off" novalidate="">
     <div class="row mt-3 row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
         <div class="col mt-2">
@@ -61,3 +63,41 @@
         </div>
     </div>
 </form>
+
+<?php else: ?>
+<form role="search" action="/search.php" method="get" autocomplete="off" novalidate="">
+    <div class="input-icon">
+        <input type="text" class="form-control" name="q" placeholder="Suchbegriff...">
+        <span class="input-icon-addon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+        </span>
+    </div>
+
+
+<div class="modal modal-blur fade" id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Metzgerei suchen...</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+            </div>
+            <div class="modal-body">
+                <form role="search" action="/search.php" method="get" autocomplete="off" novalidate="">
+                    <div class="input-icon">
+                        <input type="text" class="form-control" name="q" placeholder="Suchbegriff...">
+                        <span class="input-icon-addon">
+                            </span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Schließen</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+                        Suchen
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif ?>

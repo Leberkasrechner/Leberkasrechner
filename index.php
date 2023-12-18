@@ -6,7 +6,6 @@
     require __DIR__ ."/components/head.php";
     require __DIR__ ."/components/navbar.php";
 ?>
-
 <header class="hero">
     <div class="container">
         <h1 class="hero-title">
@@ -17,7 +16,7 @@
         </p>
         <div class="row hero-actions justify-content-center">
             <div class="col-auto">
-                <a href="search_form.php" class="btn hero-btn btn-primary">
+                <a href="#" class="btn hero-btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-search">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
                     Metzgerei suchen
                 </a>
@@ -34,7 +33,10 @@
 <div class="hr"></div>
 <h1 class="hero-map-title">Oder doch lieber auf der Karte?</h1>
 <div id="lmap"></div>
-<style></style>
+
+
+<?php $modal = true;?>
+<?php require __DIR__ . "/components/butcherSearchForm.php"; ?>
 
 <?php
 require "components/footer.php";
