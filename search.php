@@ -159,10 +159,22 @@ if (isset($_GET['q'])) {
             </div>
         </div>
 <?php
-} else {
-    // Handle the case when no search string is given
-    echo "Error: No search string provided.";
-}
+} 
+if(!isset($_GET['q'])) : ?>
+
+    <div class="page-header d-print-none">
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <h2 class="page-title">
+                Erweiterte Metzgereisuche
+            </h2>
+        </div>
+    </div>
+    <div class="page-body"> 
+        <?php require "components/butcherSearchForm.php"; ?>
+    </div>
+
+<?php endif;
 
 require "components/footer.php";
 ?>

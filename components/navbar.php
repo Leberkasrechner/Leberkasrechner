@@ -2,7 +2,7 @@
     
     $navitems = array(
         "/" => "Home",
-        "/search_form.php" => "Suche",
+        "/search.php" => "Suche",
         "/map.php" => "Karte",
         "/blog.php" => "Blog",
         "https://about.leberkasrechner.de" => "Über"
