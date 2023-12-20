@@ -1,6 +1,7 @@
 import mysql.connector, json, time, sys
 from dotenv import load_dotenv
 import os
+import requests
 load_dotenv('.env')
 db = mysql.connector.connect(
     host=os.environ.get('DBSERVER'),
@@ -18,9 +19,13 @@ if json_url == "":
     json_url = json_url_standard
 
 # JSON-Datei einlesen
-with open('static/butchers.json', encoding='utf-8') as f:
-    data = json.load(f)
-
+try:
+    with open('static/butchers.json', encoding='utf-8') as f:
+        data = json.load(f)
+except FileNotFoundError:
+    response = requests.get(json_url)
+    data = response.json()
+    
 total_entries = len(data)
 current_entry = 0
 
