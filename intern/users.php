@@ -1,5 +1,6 @@
 <?php
     $domyconn = true;
+    $navbar_highlighted = "Benutzerverwaltung";
     require "../components/head.php";
     require "../components/navbar_intern.php";
 

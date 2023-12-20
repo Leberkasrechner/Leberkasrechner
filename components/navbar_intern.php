@@ -26,6 +26,7 @@
     $navitems = array(
         "/intern/" => "Home",
         "/intern/img_menu.php" => "Bilder",
+        "/intern/users.php" => "Benutzerverwaltung",
     );
 
 

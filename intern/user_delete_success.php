@@ -1,4 +1,5 @@
-<?php require "../components/head.php"; ?>
+
+<?php $navbar_highlighted = "Benutzerverwaltung"; require "../components/head.php"; ?>
 
 
 <div class="modal modal-blur fade show" id="modal-success" tabindex="-1" role="dialog" style="display: block;" aria-modal="true">

@@ -60,11 +60,17 @@
                 $_SESSION['email'] = $email;
 
                 $dbusername = "lusr_" . $username;
-                $createUserSql = "CREATE USER '$dbusername'@'localhost' IDENTIFIED BY '$password'";
+                $createUserSql = "CREATE USER '$dbusername'@'%' IDENTIFIED BY '$password'";
                 if ($grant_conn->query($createUserSql) === TRUE) {
                     // Benutzer erfolgreich erstellt, jetzt Berechtigungen erteilen
                     // Hierfür gibt es einen eigenen Benutzer
-                    $grantPermissionSql = "GRANT SELECT ON leberkasrechner.* TO '$dbusername'@'localhost'";
+                    $grantPermissionSql = "
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.butchers TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.license TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.blog_posts TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
+                    ";
                     if ($grant_conn->query($grantPermissionSql) === TRUE) {
                         echo "Neuer Benutzer wurde erfolgreich erstellt und Berechtigungen erteilt";
                     } else {
