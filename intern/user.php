@@ -64,10 +64,9 @@
         mysqli_stmt_bind_param($stmt, "i", $id);
         mysqli_stmt_execute($stmt);
         header("Location: user_delete_success.php");
-    } 
-    if (isset($_GET["delete"])) : ?>
-
-        <div class="modal modal-blur fade show" id="modal-danger" tabindex="-1" role="dialog" style="display: block;"
+    } ?>
+    
+        <div class="modal modal-blur fade" id="modal-delete" tabindex="-1" role="dialog"
             aria-modal="true">
             <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -107,11 +106,7 @@
                 </div>
             </div>
         </div>
-    <?php endif;
-
-    
-    ?>
-
+        
     <!-- Formular zur Bearbeitung der Rechte und E-Mail-Adresse -->
     <div class="page-content">
         <div class="card mt-3">
@@ -141,7 +136,9 @@
                             <button type="submit" class="btn btn-primary">Speichern</button>
                         </div>
                         <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
-                            <a href="?id=<?= $id ?>&delete=1" class="btn btn-outline-danger">Account löschen</a>
+                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-delete">
+                                Account löschen
+                            </a>
                         </div>
                     </div>
                 </form>
