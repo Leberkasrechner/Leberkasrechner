@@ -5,4 +5,4 @@ vendor/
 img/
 Dockerfile
 install-docker.md
-update_butchers.py
+robots.txt
