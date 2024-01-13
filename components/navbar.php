@@ -27,15 +27,7 @@
 
 
 </div>
-<style>
-.navbar-blur{
-  position: fixed;
-  width: 100%;
-  background: transparent;
-  backdrop-filter: blur(4px);
-}
-</style>
-<nav class="navbar navbar-expand-md d-print-none mb-3 navbar-blur">
+<nav class="navbar navbar-expand-md d-print-none mb-3">
   <div class="container-xl">
       <a class="navbar-brand" href="/">leberkasrechner.de</a> 
       
