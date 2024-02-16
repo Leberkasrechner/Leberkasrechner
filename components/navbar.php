@@ -27,7 +27,7 @@
 
 
 </div>
-<nav class="navbar navbar-expand-md d-print-none mb-3">
+<nav class="navbar navbar-expand-md d-print-none mb-3" style="position: fixed; width: 100%;">
   <div class="container-xl">
       <a class="navbar-brand" href="/">leberkasrechner.de</a> 
       
