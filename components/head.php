@@ -28,6 +28,9 @@
         <script src="/node_modules/leaflet-search/dist/leaflet-search.min.js"></script>
         <link rel="stylesheet" href="/node_modules/leaflet-search/dist/leaflet-search.min.css"/>
         <!--leaflet-markers-canvas-->
+        <link rel="stylesheet" href="/static/leberkas-chapta.css">
+         <script src="/static/leberkas-chapta.js"></script>
+
         <script src="/node_modules/rbush/rbush.js"></script>
         <script src="/node_modules/leaflet-markers-canvas/dist/leaflet-markers-canvas.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
@@ -54,7 +57,6 @@
     <link rel="stylesheet" href="/static/custom.css"/>
     <!--Leberkas-chatpta-->
     <link rel="stylesheet" href="/static/leberkas-chapta.css">
-    <script src="/static/leberkas-chapta.js"></script>
     <!--BaguetteBox-->
     <script src="/node_modules/baguettebox.js/dist/baguetteBox.min.js"></script>
     <link rel="stylesheet" href="/node_modules/baguettebox.js/dist/baguetteBox.min.css"/>
@@ -109,7 +111,7 @@
         <img class="chapta-img" id="senf" src="/static/mustard.jpg" draggable="true">
     </div>
 </div>
-    <div class="page">
+<div class="page">
         <div class="<?=$divlayout?>">
 <?php else : ?>
 <body class="<?=$layout?> theme-light">
@@ -125,6 +127,7 @@
         <img class="chapta-img" id="senf" src="/static/mustard.jpg" draggable="true">
     </div>
 </div>
+
     <div class="page">
         <div class="<?=$divlayout?>">
 <?php endif ?>
