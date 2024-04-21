@@ -34,19 +34,6 @@
 <h1 class="hero-map-title">Oder doch lieber auf der Karte?</h1>
 <div id="lmap"></div>
 <script src="/static/leberkas-chapta.js"></script>
-
-<div id="chapta-root-container" style="display: none;">
-    <h1 class="chapta-headline">Kurze Sicherheitsüberprüfung</h1>
-    <div id="description">
-        Platzieren Sie die richtige Zutat auf der Leberkassemme (Ketchup oder Senf) um zu verifizieren, dass Sie kein Roboter sind.
-    </div>
-    <div class="root">
-    <div class="chapta-container">
-        <img class="chapta-img" id="livercheese" src="/static/livercheese.png" draggable="true">
-        <img class="chapta-img" id="ketchup" src="/static/ketchup.jpg" draggable="true">
-        <img class="chapta-img" id="senf" src="/static/mustard.jpg" draggable="true">
-    </div>
-</div>
 </div>
 
 <?php $modal = true;?>

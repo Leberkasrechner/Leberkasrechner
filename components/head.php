@@ -95,11 +95,35 @@
     } 
 ?>
 <?php if(isset($_SESSION["l_theme"]) && $_SESSION["l_theme"]=="dark") : ?>
-<body class="<?=$layout?> theme-dark">
+<body class="<?=$layout?> theme-dark" onload="LeberkasChapta()">
+<div id="chapta-root-container" style="display: none;">
+    <h1 class="chapta-headline">Kurze Sicherheitsüberprüfung</h1>
+    <div id="description">
+        Platzieren Sie die richtige Zutat auf der Leberkassemme (Ketchup oder Senf) um zu verifizieren, dass Sie kein Roboter sind.
+    </div>
+    <div class="root">
+    <div class="chapta-container">
+        <img class="chapta-img" id="livercheese" src="/static/livercheese.png" draggable="true">
+        <img class="chapta-img" id="ketchup" src="/static/ketchup.jpg" draggable="true">
+        <img class="chapta-img" id="senf" src="/static/mustard.jpg" draggable="true">
+    </div>
+</div>
     <div class="page">
         <div class="<?=$divlayout?>">
 <?php else : ?>
 <body class="<?=$layout?> theme-light">
+<div id="chapta-root-container" style="display: none;">
+    <h1 class="chapta-headline">Kurze Sicherheitsüberprüfung</h1>
+    <div id="description">
+        Platzieren Sie die richtige Zutat auf der Leberkassemme (Ketchup oder Senf) um zu verifizieren, dass Sie kein Roboter sind.
+    </div>
+    <div class="root">
+    <div class="chapta-container">
+        <img class="chapta-img" id="livercheese" src="/static/livercheese.png" draggable="true">
+        <img class="chapta-img" id="ketchup" src="/static/ketchup.jpg" draggable="true">
+        <img class="chapta-img" id="senf" src="/static/mustard.jpg" draggable="true">
+    </div>
+</div>
     <div class="page">
         <div class="<?=$divlayout?>">
 <?php endif ?>

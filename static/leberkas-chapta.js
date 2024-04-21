@@ -1,3 +1,4 @@
+function LeberkasChapta(){
 let x = document.cookie;
 if(x != "chapta=success"){
     document.getElementById("chapta-root-container").style.display="unset"
@@ -33,3 +34,4 @@ chapta.addEventListener('drop', function(event) {
         document.getElementById("description").innerHTML="Ketchup hat auf der Leberkassemme nix zu suchen eins11!eins11!!! Bitte versuchen Sie es erneut."
     }
 });
+}
