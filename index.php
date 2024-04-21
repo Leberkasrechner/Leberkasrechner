@@ -33,7 +33,6 @@
 <div class="hr"></div>
 <h1 class="hero-map-title">Oder doch lieber auf der Karte?</h1>
 <div id="lmap"></div>
-<script src="/static/leberkas-chapta.js"></script>
 </div>
 
 <?php $modal = true;?>
