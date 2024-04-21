@@ -33,6 +33,8 @@
 <div class="hr"></div>
 <h1 class="hero-map-title">Oder doch lieber auf der Karte?</h1>
 <div id="lmap"></div>
+<script src="/static/leberkas-chapta.js"></script>
+
 <div id="chapta-root-container" style="display: none;">
     <h1 class="chapta-headline">Kurze Sicherheitsüberprüfung</h1>
     <div id="description">
