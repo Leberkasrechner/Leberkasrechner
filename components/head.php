@@ -52,6 +52,9 @@
     <script src="/static/tabler/tabler.min.js"></script>
     <!--Custom CSS-->
     <link rel="stylesheet" href="/static/custom.css"/>
+    <!--Leberkas-chatpta-->
+    <link rel="stylesheet" href="/static/leberkas-chapta.css">
+    <script src="/static/leberkas-chapta.js"></script>
     <!--BaguetteBox-->
     <script src="/node_modules/baguettebox.js/dist/baguetteBox.min.js"></script>
     <link rel="stylesheet" href="/node_modules/baguettebox.js/dist/baguetteBox.min.css"/>
