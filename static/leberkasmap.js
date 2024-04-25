@@ -5,7 +5,7 @@ class leberkasMap extends L.map {
     super(htmlId, { center: new L.LatLng(48.1372, 11.5796), zoom: 10 });
 
     var OpenStreetMap = L.tileLayer(
-      "https://tiles.leberkasrechner.de/tile/{z}/{x}/{y}.png",
+      "https://tiles.leberkasrechner.de/styles/osm-bright/{z}/{x}/{y}.png",
       {
         maxZoom: 19,
         attribution:
