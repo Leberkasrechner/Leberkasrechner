@@ -26,7 +26,7 @@ $pd = null;
         ?>
             <?php 
                 $created = "Blogpost vom " . (new DateTime($postdata["created"]))->format("d.m.Y");
-                $content = explode("\n\n", $postdata["content"])[0]
+                $content = explode("\n", $postdata["content"])[0]
             ?>
             <div class="row justify-content-center">
                 <div class="col lg-10 col-xl-9">
@@ -50,7 +50,9 @@ $pd = null;
         <?php endfor ?>
 
 <?php else : ?>
+    
     <?php 
+        ## BESTIMMTER BLOGPOST SOLL ANGEZEIGT WERDEN
         global $conn;
         $stmt = $conn->prepare("SELECT * FROM blog_posts WHERE id = ?");
         $stmt->bind_param("i", $_GET["post"]);
@@ -59,6 +61,7 @@ $pd = null;
         $pd = $res->fetch_assoc();
         $created = "Blogpost vom " . (new DateTime($pd["created"]))->format("d.m.Y");
         if($res->num_rows == 0 ) :
+            # WENN BLOGPOST NICHT GEFUNDEN
     ?>
     
     <div class='empty'>
@@ -76,6 +79,7 @@ $pd = null;
         require "components/footer.php";
         die();
         endif 
+        # BESTIMMTEN BLOGPOST GEFUNDEN; WIRD JETZT ANGEZEIGT
     ?>
     
     <div class="card">
@@ -91,6 +95,7 @@ $pd = null;
             <?=$parsedown->text(($pd["content"]))?>
         </div>
     </div>
+    <h2>Kommentare</h2>
 
 <?php endif ?>
 
