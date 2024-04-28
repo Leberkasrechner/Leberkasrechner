@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="/node_modules/leaflet-search/dist/leaflet-search.min.css"/>
         <!--leaflet-markers-canvas-->
         <script src="/node_modules/rbush/rbush.js"></script>
+        <script src="/node_modules/leaflet-markers-canvas/dist/leaflet-markers-canvas.min.js"></script>
 
     <?php endif ?>
     <?php if(isset($lmap)) : ?>
