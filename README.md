@@ -1,7 +1,4 @@
 # What is it?
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLeberkasrechner%2FLeberkasrechner.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FLeberkasrechner%2FLeberkasrechner?ref=badge_shield)
-
-
 Leberkasrechner is a project that helps people find butchers.
 It helps to establish contacts with local butchers and discover the world of gourmet cuisine, but is also tailored to the needs of vegans, vegetarians and other dietary groups.
 
@@ -46,7 +43,3 @@ We appreciate all contributions, no matter how small! Remember, open source is n
 Useful notes for Development
 
 - [taginfo](https://taginfo.openstreetmap.org/tags/shop=butcher#combinations)
-
-
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLeberkasrechner%2FLeberkasrechner.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FLeberkasrechner%2FLeberkasrechner?ref=badge_large)
