@@ -30,6 +30,7 @@ GRANT SELECT ON leberkasrechner.image TO 'lview'@'localhost';
 GRANT SELECT ON leberkasrechner.image_butcher TO 'lview'@'localhost';
 GRANT SELECT ON leberkasrechner.butchers TO 'lview'@'localhost';
 GRANT SELECT ON leberkasrechner.blog_posts TO 'lview'@'localhost';
+GRANT SELECT, INSERT ON leberkasrechner.comments TO 'lview'@'localhost';
 GRANT SELECT (`id`, `edit`, `admin`) ON `leberkasrechner`.`users` TO 'lview'@'localhost';
 ALTER USER 'lview'@'localhost' ;
 ```
@@ -47,6 +48,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO 'luserc
 GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO 'lusercreate'@'localhost' WITH GRANT OPTION;
 GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image TO 'lusercreate'@'localhost' WITH GRANT OPTION;
 GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.license TO 'lusercreate'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.comments TO 'lusercreate'@'localhost' WITH GRANT OPTION;
 GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.blog_posts TO 'lview'@'localhost' WITH GRANT OPTION;
 GRANT SELECT (id, username, email, edit, admin) ON leberkasrechner.users TO lusercreate@localhost WITH GRANT OPTION;
 ALTER USER lusercreate@localhost ;

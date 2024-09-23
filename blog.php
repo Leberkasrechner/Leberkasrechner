@@ -82,7 +82,7 @@ $pd = null;
         # BESTIMMTEN BLOGPOST GEFUNDEN; WIRD JETZT ANGEZEIGT
     ?>
     
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header">
             <h3 class="card-title">
                 <?=($pd["header"])?>
@@ -95,7 +95,56 @@ $pd = null;
             <?=$parsedown->text(($pd["content"]))?>
         </div>
     </div>
-    <h2>Kommentare</h2>
+
+
+    <!-- Kommentarsektion -->
+    <div class="comments-section mt-4">
+        <h2>Kommentare</h4>
+        <!-- Kommentare anzeigen -->
+        <?php
+        $stmt = $conn->prepare("SELECT * FROM comments WHERE blog_post_id = ? AND is_approved = 1 ORDER BY created_at DESC");
+        $stmt->bind_param("i", $postid);
+        $stmt->execute();
+        $comments = $stmt->get_result();
+        if ($comments->num_rows > 0) {
+            while ($comment = $comments->fetch_assoc()) {
+                echo "<div>";
+                echo "<div class=\"card-title mb-0\">{$comment['author']} <span class=\"card-subtitle\">" . (new DateTime($comment['created_at']))->format("d.m.Y, H:i") . "</span></div>";
+                echo "<p>{$comment['comment']}</p>";
+                echo "</div><div class=\"hr\"></div>";
+            }
+        } else {
+            echo "<p>Noch keine Kommentare.</p>";
+        }
+        ?>
+
+        <!-- Formular für neuen Kommentar -->
+        <form action="/submit_comment.php" method="POST" class="card mt-4 mb-3">
+            <div class="card-header"><span class="card-title">Kommentar verfassen</span></div>
+            <div class="card-body">
+                <input type="hidden" name="postid" value="<?=$postid?>">
+                <div class="mb-3">
+                    <label for="author" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="author" name="author" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-Mail</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Kommentar</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="captcha" class="form-label">Sicherheitsfrage: 5 + 3 = ?</label>
+                    <input type="text" class="form-control" id="captcha" name="captcha" required>
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <button type="submit" class="btn btn-primary">Kommentar abschicken</button>
+            </div>
+        </form>
+    </div>
 
 <?php endif ?>
 
