@@ -119,7 +119,7 @@ $pd = null;
         ?>
 
         <!-- Formular für neuen Kommentar -->
-        <form action="/submit_comment.php" method="POST" class="card mt-4 mb-3">
+        <form action="/submit_blog_comment.php" method="POST" class="card mt-4 mb-3">
             <div class="card-header"><span class="card-title">Kommentar verfassen</span></div>
             <div class="card-body">
                 <input type="hidden" name="postid" value="<?=$postid?>">
