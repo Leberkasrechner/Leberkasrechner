@@ -102,7 +102,7 @@ $pd = null;
         <h2>Kommentare</h4>
         <!-- Kommentare anzeigen -->
         <?php
-        $stmt = $conn->prepare("SELECT * FROM comments WHERE blog_post_id = ? AND is_approved = 1 ORDER BY created_at DESC");
+        $stmt = $conn->prepare("SELECT * FROM blog_comments WHERE blog_post_id = ? AND is_approved = 1 ORDER BY created_at DESC");
         $stmt->bind_param("i", $postid);
         $stmt->execute();
         $comments = $stmt->get_result();
