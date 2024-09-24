@@ -30,7 +30,7 @@ GRANT SELECT ON leberkasrechner.image TO 'lview'@'localhost';
 GRANT SELECT ON leberkasrechner.image_butcher TO 'lview'@'localhost';
 GRANT SELECT ON leberkasrechner.butchers TO 'lview'@'localhost';
 GRANT SELECT ON leberkasrechner.blog_posts TO 'lview'@'localhost';
-GRANT SELECT, INSERT ON leberkasrechner.comments TO 'lview'@'localhost';
+GRANT SELECT (`id`, `blog_post_id`, `author`, `comment`, `created_at`, `is_approved`), INSERT ON `leberkasrechner`.`blog_comments` TO 'lview'@'%';
 GRANT SELECT (`id`, `edit`, `admin`) ON `leberkasrechner`.`users` TO 'lview'@'localhost';
 ALTER USER 'lview'@'localhost' ;
 ```

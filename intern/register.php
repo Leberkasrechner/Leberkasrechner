@@ -65,11 +65,12 @@
                     // Benutzer erfolgreich erstellt, jetzt Berechtigungen erteilen
                     // Hierfür gibt es einen eigenen Benutzer
                     $grantPermissionSql = "
-                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.butchers TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
-                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
-                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
-                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.license TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
-                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.blog_posts TO '$dbusername'@'%'; ALTER USER '$dbusername'@'localhost';
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.butchers TO '$dbusername'@'localhost'; 
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image_butcher TO '$dbusername'@'localhost'; 
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.image TO '$dbusername'@'localhost'; 
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.license TO '$dbusername'@'localhost'; 
+                        GRANT SELECT, INSERT, UPDATE, DELETE ON leberkasrechner.blog_posts TO '$dbusername'@'localhost'; 
+                        ALTER USER '$dbusername'@'localhost';
                     ";
                     if ($grant_conn->query($grantPermissionSql) === TRUE) {
                         echo "Neuer Benutzer wurde erfolgreich erstellt und Berechtigungen erteilt";
